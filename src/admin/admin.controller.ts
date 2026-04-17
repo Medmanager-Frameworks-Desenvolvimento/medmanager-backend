@@ -1,6 +1,7 @@
 import {
     Body, 
-    Param,
+    Param, 
+    UseGuards,
     Controller, 
     ValidationPipe,
     Post, Delete, Get, Patch 
@@ -10,6 +11,7 @@ import { Admin } from 'src/generated/prisma/client';
 import { AdminService } from './admin.service'
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('admin')
 export class AdminController {
@@ -21,11 +23,13 @@ export class AdminController {
         return this.adminService.createAdmin(adminData)
     }
 
+    @UseGuards(AuthGuard)
     @Get(':id')
     async findOne(@Param('id') id: string) {
         return this.adminService.findOne(id);
     }
 
+    @UseGuards(AuthGuard)
     @Patch(':id')
     async updateAdmin(
         @Param('id') id: string, 
@@ -34,6 +38,7 @@ export class AdminController {
         return this.adminService.updateAdmin(id, updateAdminDto);
     }
 
+    @UseGuards(AuthGuard)
     @Delete(':id')
     async deleteAdmin(@Param('id') id: string): Promise<Admin> {
         return this.adminService.deleteAdmin({ id: id });

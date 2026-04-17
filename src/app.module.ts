@@ -5,14 +5,16 @@ import { AppService } from './app.service';
 import { PrismaService } from './database/prisma.service';
 import { DatabaseModule } from './database/database.module';
 import { AdminModule } from './admin/admin.module';
+import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true,  envFilePath: '.env'}),
     DatabaseModule, 
-    AdminModule,
+    AdminModule, AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService, PrismaService],
+  providers: [AppService, PrismaService, AuthService],
 })
 export class AppModule {}

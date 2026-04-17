@@ -3,6 +3,7 @@ import { PrismaService } from 'src/database/prisma.service';
 import { Admin, Prisma } from 'src/generated/prisma/client';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AdminService {
@@ -17,9 +18,10 @@ export class AdminService {
     }
 
     async createAdmin(createAdminDto: CreateAdminDto) {
+        const hashPassword = await bcrypt.hash(createAdminDto.senha, 12);
         const newAdmin = createAdminDto
         return await this.prisma.admin.create({
-            data: newAdmin
+            data: {...newAdmin, senha: hashPassword }
         });
     }
     

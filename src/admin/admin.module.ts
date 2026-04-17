@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { AdminController } from './admin.controller';
 import { DatabaseModule } from 'src/database/database.module';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({ 
-  imports: [DatabaseModule],
+    imports: [DatabaseModule, forwardRef(() => AuthModule)],
   providers: [AdminService],
   controllers: [AdminController],
 })
