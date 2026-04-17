@@ -23,7 +23,7 @@ model Admin {
   updatedAt    DateTime     @updatedAt @db.Timestamptz(3)
   deletedAt    DateTime?
 
-  @@map("administrador") 
+  @@map("admin") 
 }
 
 model Paciente {
