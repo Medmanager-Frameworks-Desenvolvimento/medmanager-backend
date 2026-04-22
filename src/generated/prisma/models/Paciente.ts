@@ -42,7 +42,6 @@ export type PacienteMinAggregateOutputType = {
   nome: string | null
   cpf: string | null
   idade: number | null
-  doenca_cronica: string | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -54,7 +53,6 @@ export type PacienteMaxAggregateOutputType = {
   nome: string | null
   cpf: string | null
   idade: number | null
-  doenca_cronica: string | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -90,7 +88,6 @@ export type PacienteMinAggregateInputType = {
   nome?: true
   cpf?: true
   idade?: true
-  doenca_cronica?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -102,7 +99,6 @@ export type PacienteMaxAggregateInputType = {
   nome?: true
   cpf?: true
   idade?: true
-  doenca_cronica?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -213,7 +209,7 @@ export type PacienteGroupByOutputType = {
   nome: string
   cpf: string
   idade: number
-  doenca_cronica: string
+  doenca_cronica: string[]
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
@@ -248,7 +244,7 @@ export type PacienteWhereInput = {
   nome?: Prisma.StringFilter<"Paciente"> | string
   cpf?: Prisma.StringFilter<"Paciente"> | string
   idade?: Prisma.IntFilter<"Paciente"> | number
-  doenca_cronica?: Prisma.StringFilter<"Paciente"> | string
+  doenca_cronica?: Prisma.StringNullableListFilter<"Paciente">
   createdAt?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Paciente"> | Date | string | null
@@ -279,7 +275,7 @@ export type PacienteWhereUniqueInput = Prisma.AtLeast<{
   nome?: Prisma.StringFilter<"Paciente"> | string
   cpf?: Prisma.StringFilter<"Paciente"> | string
   idade?: Prisma.IntFilter<"Paciente"> | number
-  doenca_cronica?: Prisma.StringFilter<"Paciente"> | string
+  doenca_cronica?: Prisma.StringNullableListFilter<"Paciente">
   createdAt?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Paciente"> | Date | string | null
@@ -313,7 +309,7 @@ export type PacienteScalarWhereWithAggregatesInput = {
   nome?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
   cpf?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
   idade?: Prisma.IntWithAggregatesFilter<"Paciente"> | number
-  doenca_cronica?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
+  doenca_cronica?: Prisma.StringNullableListFilter<"Paciente">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Paciente"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Paciente"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Paciente"> | Date | string | null
@@ -323,7 +319,7 @@ export type PacienteCreateInput = {
   nome: string
   cpf: string
   idade: number
-  doenca_cronica: string
+  doenca_cronica?: Prisma.PacienteCreatedoenca_cronicaInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -337,7 +333,7 @@ export type PacienteUncheckedCreateInput = {
   nome: string
   cpf: string
   idade: number
-  doenca_cronica: string
+  doenca_cronica?: Prisma.PacienteCreatedoenca_cronicaInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -348,7 +344,7 @@ export type PacienteUpdateInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.IntFieldUpdateOperationsInput | number
-  doenca_cronica?: Prisma.StringFieldUpdateOperationsInput | string
+  doenca_cronica?: Prisma.PacienteUpdatedoenca_cronicaInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -362,7 +358,7 @@ export type PacienteUncheckedUpdateInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.IntFieldUpdateOperationsInput | number
-  doenca_cronica?: Prisma.StringFieldUpdateOperationsInput | string
+  doenca_cronica?: Prisma.PacienteUpdatedoenca_cronicaInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -375,7 +371,7 @@ export type PacienteCreateManyInput = {
   nome: string
   cpf: string
   idade: number
-  doenca_cronica: string
+  doenca_cronica?: Prisma.PacienteCreatedoenca_cronicaInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -385,7 +381,7 @@ export type PacienteUpdateManyMutationInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.IntFieldUpdateOperationsInput | number
-  doenca_cronica?: Prisma.StringFieldUpdateOperationsInput | string
+  doenca_cronica?: Prisma.PacienteUpdatedoenca_cronicaInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -397,7 +393,7 @@ export type PacienteUncheckedUpdateManyInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.IntFieldUpdateOperationsInput | number
-  doenca_cronica?: Prisma.StringFieldUpdateOperationsInput | string
+  doenca_cronica?: Prisma.PacienteUpdatedoenca_cronicaInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -411,6 +407,14 @@ export type PacienteListRelationFilter = {
 
 export type PacienteOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type PacienteCountOrderByAggregateInput = {
@@ -436,7 +440,6 @@ export type PacienteMaxOrderByAggregateInput = {
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
   idade?: Prisma.SortOrder
-  doenca_cronica?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -448,7 +451,6 @@ export type PacienteMinOrderByAggregateInput = {
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
   idade?: Prisma.SortOrder
-  doenca_cronica?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -506,12 +508,21 @@ export type PacienteUncheckedUpdateManyWithoutAdminNestedInput = {
   deleteMany?: Prisma.PacienteScalarWhereInput | Prisma.PacienteScalarWhereInput[]
 }
 
+export type PacienteCreatedoenca_cronicaInput = {
+  set: string[]
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type PacienteUpdatedoenca_cronicaInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type PacienteCreateNestedOneWithoutPrescricoesInput = {
@@ -532,7 +543,7 @@ export type PacienteCreateWithoutAdminInput = {
   nome: string
   cpf: string
   idade: number
-  doenca_cronica: string
+  doenca_cronica?: Prisma.PacienteCreatedoenca_cronicaInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -544,7 +555,7 @@ export type PacienteUncheckedCreateWithoutAdminInput = {
   nome: string
   cpf: string
   idade: number
-  doenca_cronica: string
+  doenca_cronica?: Prisma.PacienteCreatedoenca_cronicaInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -586,7 +597,7 @@ export type PacienteScalarWhereInput = {
   nome?: Prisma.StringFilter<"Paciente"> | string
   cpf?: Prisma.StringFilter<"Paciente"> | string
   idade?: Prisma.IntFilter<"Paciente"> | number
-  doenca_cronica?: Prisma.StringFilter<"Paciente"> | string
+  doenca_cronica?: Prisma.StringNullableListFilter<"Paciente">
   createdAt?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Paciente"> | Date | string | null
@@ -596,7 +607,7 @@ export type PacienteCreateWithoutPrescricoesInput = {
   nome: string
   cpf: string
   idade: number
-  doenca_cronica: string
+  doenca_cronica?: Prisma.PacienteCreatedoenca_cronicaInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -609,7 +620,7 @@ export type PacienteUncheckedCreateWithoutPrescricoesInput = {
   nome: string
   cpf: string
   idade: number
-  doenca_cronica: string
+  doenca_cronica?: Prisma.PacienteCreatedoenca_cronicaInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -635,7 +646,7 @@ export type PacienteUpdateWithoutPrescricoesInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.IntFieldUpdateOperationsInput | number
-  doenca_cronica?: Prisma.StringFieldUpdateOperationsInput | string
+  doenca_cronica?: Prisma.PacienteUpdatedoenca_cronicaInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -648,7 +659,7 @@ export type PacienteUncheckedUpdateWithoutPrescricoesInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.IntFieldUpdateOperationsInput | number
-  doenca_cronica?: Prisma.StringFieldUpdateOperationsInput | string
+  doenca_cronica?: Prisma.PacienteUpdatedoenca_cronicaInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -659,7 +670,7 @@ export type PacienteCreateManyAdminInput = {
   nome: string
   cpf: string
   idade: number
-  doenca_cronica: string
+  doenca_cronica?: Prisma.PacienteCreatedoenca_cronicaInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -669,7 +680,7 @@ export type PacienteUpdateWithoutAdminInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.IntFieldUpdateOperationsInput | number
-  doenca_cronica?: Prisma.StringFieldUpdateOperationsInput | string
+  doenca_cronica?: Prisma.PacienteUpdatedoenca_cronicaInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -681,7 +692,7 @@ export type PacienteUncheckedUpdateWithoutAdminInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.IntFieldUpdateOperationsInput | number
-  doenca_cronica?: Prisma.StringFieldUpdateOperationsInput | string
+  doenca_cronica?: Prisma.PacienteUpdatedoenca_cronicaInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -693,7 +704,7 @@ export type PacienteUncheckedUpdateManyWithoutAdminInput = {
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.IntFieldUpdateOperationsInput | number
-  doenca_cronica?: Prisma.StringFieldUpdateOperationsInput | string
+  doenca_cronica?: Prisma.PacienteUpdatedoenca_cronicaInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -808,7 +819,7 @@ export type $PacientePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     nome: string
     cpf: string
     idade: number
-    doenca_cronica: string
+    doenca_cronica: string[]
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -1242,7 +1253,7 @@ export interface PacienteFieldRefs {
   readonly nome: Prisma.FieldRef<"Paciente", 'String'>
   readonly cpf: Prisma.FieldRef<"Paciente", 'String'>
   readonly idade: Prisma.FieldRef<"Paciente", 'Int'>
-  readonly doenca_cronica: Prisma.FieldRef<"Paciente", 'String'>
+  readonly doenca_cronica: Prisma.FieldRef<"Paciente", 'String[]'>
   readonly createdAt: Prisma.FieldRef<"Paciente", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Paciente", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Paciente", 'DateTime'>

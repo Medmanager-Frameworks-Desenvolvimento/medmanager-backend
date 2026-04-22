@@ -7,12 +7,13 @@ import { DatabaseModule } from './database/database.module';
 import { AdminModule } from './admin/admin.module';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
+import { PacientesModule } from './pacientes/pacientes.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true,  envFilePath: '.env'}),
     DatabaseModule, 
-    AdminModule, AuthModule,
+    AdminModule, AuthModule, PacientesModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService, AuthService],
