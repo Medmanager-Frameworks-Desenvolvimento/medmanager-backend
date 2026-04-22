@@ -79,7 +79,6 @@ export const AdminScalarFieldEnum = {
   nome: 'nome',
   email: 'email',
   senha: 'senha',
-  status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
@@ -90,6 +89,7 @@ export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof Ad
 
 export const PacienteScalarFieldEnum = {
   id: 'id',
+  id_admin: 'id_admin',
   nome: 'nome',
   cpf: 'cpf',
   idade: 'idade',
@@ -104,6 +104,7 @@ export type PacienteScalarFieldEnum = (typeof PacienteScalarFieldEnum)[keyof typ
 
 export const EnfermeiroScalarFieldEnum = {
   id: 'id',
+  id_admin: 'id_admin',
   nome: 'nome',
   cpf: 'cpf',
   email: 'email',
@@ -118,6 +119,7 @@ export type EnfermeiroScalarFieldEnum = (typeof EnfermeiroScalarFieldEnum)[keyof
 
 export const MedicamentoScalarFieldEnum = {
   id: 'id',
+  id_admin: 'id_admin',
   nome: 'nome',
   descricao: 'descricao',
   quantidade: 'quantidade',
@@ -132,6 +134,7 @@ export type MedicamentoScalarFieldEnum = (typeof MedicamentoScalarFieldEnum)[key
 
 export const PrescricaoScalarFieldEnum = {
   id: 'id',
+  id_admin: 'id_admin',
   id_paciente: 'id_paciente',
   id_enfermeiro: 'id_enfermeiro',
   id_medicamento: 'id_medicamento',

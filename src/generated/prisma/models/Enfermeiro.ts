@@ -36,6 +36,7 @@ export type EnfermeiroSumAggregateOutputType = {
 
 export type EnfermeiroMinAggregateOutputType = {
   id: number | null
+  id_admin: string | null
   nome: string | null
   cpf: string | null
   email: string | null
@@ -47,6 +48,7 @@ export type EnfermeiroMinAggregateOutputType = {
 
 export type EnfermeiroMaxAggregateOutputType = {
   id: number | null
+  id_admin: string | null
   nome: string | null
   cpf: string | null
   email: string | null
@@ -58,6 +60,7 @@ export type EnfermeiroMaxAggregateOutputType = {
 
 export type EnfermeiroCountAggregateOutputType = {
   id: number
+  id_admin: number
   nome: number
   cpf: number
   email: number
@@ -79,6 +82,7 @@ export type EnfermeiroSumAggregateInputType = {
 
 export type EnfermeiroMinAggregateInputType = {
   id?: true
+  id_admin?: true
   nome?: true
   cpf?: true
   email?: true
@@ -90,6 +94,7 @@ export type EnfermeiroMinAggregateInputType = {
 
 export type EnfermeiroMaxAggregateInputType = {
   id?: true
+  id_admin?: true
   nome?: true
   cpf?: true
   email?: true
@@ -101,6 +106,7 @@ export type EnfermeiroMaxAggregateInputType = {
 
 export type EnfermeiroCountAggregateInputType = {
   id?: true
+  id_admin?: true
   nome?: true
   cpf?: true
   email?: true
@@ -199,6 +205,7 @@ export type EnfermeiroGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 
 export type EnfermeiroGroupByOutputType = {
   id: number
+  id_admin: string
   nome: string
   cpf: string
   email: string
@@ -233,6 +240,7 @@ export type EnfermeiroWhereInput = {
   OR?: Prisma.EnfermeiroWhereInput[]
   NOT?: Prisma.EnfermeiroWhereInput | Prisma.EnfermeiroWhereInput[]
   id?: Prisma.IntFilter<"Enfermeiro"> | number
+  id_admin?: Prisma.StringFilter<"Enfermeiro"> | string
   nome?: Prisma.StringFilter<"Enfermeiro"> | string
   cpf?: Prisma.StringFilter<"Enfermeiro"> | string
   email?: Prisma.StringFilter<"Enfermeiro"> | string
@@ -240,11 +248,13 @@ export type EnfermeiroWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Enfermeiro"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Enfermeiro"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Enfermeiro"> | Date | string | null
+  admin?: Prisma.XOR<Prisma.AdminScalarRelationFilter, Prisma.AdminWhereInput>
   prescricoes?: Prisma.PrescricaoListRelationFilter
 }
 
 export type EnfermeiroOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  id_admin?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
   email?: Prisma.SortOrder
@@ -252,6 +262,7 @@ export type EnfermeiroOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  admin?: Prisma.AdminOrderByWithRelationInput
   prescricoes?: Prisma.PrescricaoOrderByRelationAggregateInput
 }
 
@@ -260,6 +271,7 @@ export type EnfermeiroWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.EnfermeiroWhereInput | Prisma.EnfermeiroWhereInput[]
   OR?: Prisma.EnfermeiroWhereInput[]
   NOT?: Prisma.EnfermeiroWhereInput | Prisma.EnfermeiroWhereInput[]
+  id_admin?: Prisma.StringFilter<"Enfermeiro"> | string
   nome?: Prisma.StringFilter<"Enfermeiro"> | string
   cpf?: Prisma.StringFilter<"Enfermeiro"> | string
   email?: Prisma.StringFilter<"Enfermeiro"> | string
@@ -267,11 +279,13 @@ export type EnfermeiroWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Enfermeiro"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Enfermeiro"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Enfermeiro"> | Date | string | null
+  admin?: Prisma.XOR<Prisma.AdminScalarRelationFilter, Prisma.AdminWhereInput>
   prescricoes?: Prisma.PrescricaoListRelationFilter
 }, "id">
 
 export type EnfermeiroOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  id_admin?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
   email?: Prisma.SortOrder
@@ -291,6 +305,7 @@ export type EnfermeiroScalarWhereWithAggregatesInput = {
   OR?: Prisma.EnfermeiroScalarWhereWithAggregatesInput[]
   NOT?: Prisma.EnfermeiroScalarWhereWithAggregatesInput | Prisma.EnfermeiroScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Enfermeiro"> | number
+  id_admin?: Prisma.StringWithAggregatesFilter<"Enfermeiro"> | string
   nome?: Prisma.StringWithAggregatesFilter<"Enfermeiro"> | string
   cpf?: Prisma.StringWithAggregatesFilter<"Enfermeiro"> | string
   email?: Prisma.StringWithAggregatesFilter<"Enfermeiro"> | string
@@ -308,11 +323,13 @@ export type EnfermeiroCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  admin: Prisma.AdminCreateNestedOneWithoutEnfermeirosInput
   prescricoes?: Prisma.PrescricaoCreateNestedManyWithoutEnfermeiroInput
 }
 
 export type EnfermeiroUncheckedCreateInput = {
   id?: number
+  id_admin: string
   nome: string
   cpf: string
   email: string
@@ -331,11 +348,13 @@ export type EnfermeiroUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  admin?: Prisma.AdminUpdateOneRequiredWithoutEnfermeirosNestedInput
   prescricoes?: Prisma.PrescricaoUpdateManyWithoutEnfermeiroNestedInput
 }
 
 export type EnfermeiroUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  id_admin?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -348,6 +367,7 @@ export type EnfermeiroUncheckedUpdateInput = {
 
 export type EnfermeiroCreateManyInput = {
   id?: number
+  id_admin: string
   nome: string
   cpf: string
   email: string
@@ -369,6 +389,7 @@ export type EnfermeiroUpdateManyMutationInput = {
 
 export type EnfermeiroUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  id_admin?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -378,8 +399,19 @@ export type EnfermeiroUncheckedUpdateManyInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
+export type EnfermeiroListRelationFilter = {
+  every?: Prisma.EnfermeiroWhereInput
+  some?: Prisma.EnfermeiroWhereInput
+  none?: Prisma.EnfermeiroWhereInput
+}
+
+export type EnfermeiroOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type EnfermeiroCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  id_admin?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
   email?: Prisma.SortOrder
@@ -395,6 +427,7 @@ export type EnfermeiroAvgOrderByAggregateInput = {
 
 export type EnfermeiroMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  id_admin?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
   email?: Prisma.SortOrder
@@ -406,6 +439,7 @@ export type EnfermeiroMaxOrderByAggregateInput = {
 
 export type EnfermeiroMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  id_admin?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
   email?: Prisma.SortOrder
@@ -424,6 +458,48 @@ export type EnfermeiroScalarRelationFilter = {
   isNot?: Prisma.EnfermeiroWhereInput
 }
 
+export type EnfermeiroCreateNestedManyWithoutAdminInput = {
+  create?: Prisma.XOR<Prisma.EnfermeiroCreateWithoutAdminInput, Prisma.EnfermeiroUncheckedCreateWithoutAdminInput> | Prisma.EnfermeiroCreateWithoutAdminInput[] | Prisma.EnfermeiroUncheckedCreateWithoutAdminInput[]
+  connectOrCreate?: Prisma.EnfermeiroCreateOrConnectWithoutAdminInput | Prisma.EnfermeiroCreateOrConnectWithoutAdminInput[]
+  createMany?: Prisma.EnfermeiroCreateManyAdminInputEnvelope
+  connect?: Prisma.EnfermeiroWhereUniqueInput | Prisma.EnfermeiroWhereUniqueInput[]
+}
+
+export type EnfermeiroUncheckedCreateNestedManyWithoutAdminInput = {
+  create?: Prisma.XOR<Prisma.EnfermeiroCreateWithoutAdminInput, Prisma.EnfermeiroUncheckedCreateWithoutAdminInput> | Prisma.EnfermeiroCreateWithoutAdminInput[] | Prisma.EnfermeiroUncheckedCreateWithoutAdminInput[]
+  connectOrCreate?: Prisma.EnfermeiroCreateOrConnectWithoutAdminInput | Prisma.EnfermeiroCreateOrConnectWithoutAdminInput[]
+  createMany?: Prisma.EnfermeiroCreateManyAdminInputEnvelope
+  connect?: Prisma.EnfermeiroWhereUniqueInput | Prisma.EnfermeiroWhereUniqueInput[]
+}
+
+export type EnfermeiroUpdateManyWithoutAdminNestedInput = {
+  create?: Prisma.XOR<Prisma.EnfermeiroCreateWithoutAdminInput, Prisma.EnfermeiroUncheckedCreateWithoutAdminInput> | Prisma.EnfermeiroCreateWithoutAdminInput[] | Prisma.EnfermeiroUncheckedCreateWithoutAdminInput[]
+  connectOrCreate?: Prisma.EnfermeiroCreateOrConnectWithoutAdminInput | Prisma.EnfermeiroCreateOrConnectWithoutAdminInput[]
+  upsert?: Prisma.EnfermeiroUpsertWithWhereUniqueWithoutAdminInput | Prisma.EnfermeiroUpsertWithWhereUniqueWithoutAdminInput[]
+  createMany?: Prisma.EnfermeiroCreateManyAdminInputEnvelope
+  set?: Prisma.EnfermeiroWhereUniqueInput | Prisma.EnfermeiroWhereUniqueInput[]
+  disconnect?: Prisma.EnfermeiroWhereUniqueInput | Prisma.EnfermeiroWhereUniqueInput[]
+  delete?: Prisma.EnfermeiroWhereUniqueInput | Prisma.EnfermeiroWhereUniqueInput[]
+  connect?: Prisma.EnfermeiroWhereUniqueInput | Prisma.EnfermeiroWhereUniqueInput[]
+  update?: Prisma.EnfermeiroUpdateWithWhereUniqueWithoutAdminInput | Prisma.EnfermeiroUpdateWithWhereUniqueWithoutAdminInput[]
+  updateMany?: Prisma.EnfermeiroUpdateManyWithWhereWithoutAdminInput | Prisma.EnfermeiroUpdateManyWithWhereWithoutAdminInput[]
+  deleteMany?: Prisma.EnfermeiroScalarWhereInput | Prisma.EnfermeiroScalarWhereInput[]
+}
+
+export type EnfermeiroUncheckedUpdateManyWithoutAdminNestedInput = {
+  create?: Prisma.XOR<Prisma.EnfermeiroCreateWithoutAdminInput, Prisma.EnfermeiroUncheckedCreateWithoutAdminInput> | Prisma.EnfermeiroCreateWithoutAdminInput[] | Prisma.EnfermeiroUncheckedCreateWithoutAdminInput[]
+  connectOrCreate?: Prisma.EnfermeiroCreateOrConnectWithoutAdminInput | Prisma.EnfermeiroCreateOrConnectWithoutAdminInput[]
+  upsert?: Prisma.EnfermeiroUpsertWithWhereUniqueWithoutAdminInput | Prisma.EnfermeiroUpsertWithWhereUniqueWithoutAdminInput[]
+  createMany?: Prisma.EnfermeiroCreateManyAdminInputEnvelope
+  set?: Prisma.EnfermeiroWhereUniqueInput | Prisma.EnfermeiroWhereUniqueInput[]
+  disconnect?: Prisma.EnfermeiroWhereUniqueInput | Prisma.EnfermeiroWhereUniqueInput[]
+  delete?: Prisma.EnfermeiroWhereUniqueInput | Prisma.EnfermeiroWhereUniqueInput[]
+  connect?: Prisma.EnfermeiroWhereUniqueInput | Prisma.EnfermeiroWhereUniqueInput[]
+  update?: Prisma.EnfermeiroUpdateWithWhereUniqueWithoutAdminInput | Prisma.EnfermeiroUpdateWithWhereUniqueWithoutAdminInput[]
+  updateMany?: Prisma.EnfermeiroUpdateManyWithWhereWithoutAdminInput | Prisma.EnfermeiroUpdateManyWithWhereWithoutAdminInput[]
+  deleteMany?: Prisma.EnfermeiroScalarWhereInput | Prisma.EnfermeiroScalarWhereInput[]
+}
+
 export type EnfermeiroCreateNestedOneWithoutPrescricoesInput = {
   create?: Prisma.XOR<Prisma.EnfermeiroCreateWithoutPrescricoesInput, Prisma.EnfermeiroUncheckedCreateWithoutPrescricoesInput>
   connectOrCreate?: Prisma.EnfermeiroCreateOrConnectWithoutPrescricoesInput
@@ -438,6 +514,70 @@ export type EnfermeiroUpdateOneRequiredWithoutPrescricoesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EnfermeiroUpdateToOneWithWhereWithoutPrescricoesInput, Prisma.EnfermeiroUpdateWithoutPrescricoesInput>, Prisma.EnfermeiroUncheckedUpdateWithoutPrescricoesInput>
 }
 
+export type EnfermeiroCreateWithoutAdminInput = {
+  nome: string
+  cpf: string
+  email: string
+  telefone: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  prescricoes?: Prisma.PrescricaoCreateNestedManyWithoutEnfermeiroInput
+}
+
+export type EnfermeiroUncheckedCreateWithoutAdminInput = {
+  id?: number
+  nome: string
+  cpf: string
+  email: string
+  telefone: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  prescricoes?: Prisma.PrescricaoUncheckedCreateNestedManyWithoutEnfermeiroInput
+}
+
+export type EnfermeiroCreateOrConnectWithoutAdminInput = {
+  where: Prisma.EnfermeiroWhereUniqueInput
+  create: Prisma.XOR<Prisma.EnfermeiroCreateWithoutAdminInput, Prisma.EnfermeiroUncheckedCreateWithoutAdminInput>
+}
+
+export type EnfermeiroCreateManyAdminInputEnvelope = {
+  data: Prisma.EnfermeiroCreateManyAdminInput | Prisma.EnfermeiroCreateManyAdminInput[]
+  skipDuplicates?: boolean
+}
+
+export type EnfermeiroUpsertWithWhereUniqueWithoutAdminInput = {
+  where: Prisma.EnfermeiroWhereUniqueInput
+  update: Prisma.XOR<Prisma.EnfermeiroUpdateWithoutAdminInput, Prisma.EnfermeiroUncheckedUpdateWithoutAdminInput>
+  create: Prisma.XOR<Prisma.EnfermeiroCreateWithoutAdminInput, Prisma.EnfermeiroUncheckedCreateWithoutAdminInput>
+}
+
+export type EnfermeiroUpdateWithWhereUniqueWithoutAdminInput = {
+  where: Prisma.EnfermeiroWhereUniqueInput
+  data: Prisma.XOR<Prisma.EnfermeiroUpdateWithoutAdminInput, Prisma.EnfermeiroUncheckedUpdateWithoutAdminInput>
+}
+
+export type EnfermeiroUpdateManyWithWhereWithoutAdminInput = {
+  where: Prisma.EnfermeiroScalarWhereInput
+  data: Prisma.XOR<Prisma.EnfermeiroUpdateManyMutationInput, Prisma.EnfermeiroUncheckedUpdateManyWithoutAdminInput>
+}
+
+export type EnfermeiroScalarWhereInput = {
+  AND?: Prisma.EnfermeiroScalarWhereInput | Prisma.EnfermeiroScalarWhereInput[]
+  OR?: Prisma.EnfermeiroScalarWhereInput[]
+  NOT?: Prisma.EnfermeiroScalarWhereInput | Prisma.EnfermeiroScalarWhereInput[]
+  id?: Prisma.IntFilter<"Enfermeiro"> | number
+  id_admin?: Prisma.StringFilter<"Enfermeiro"> | string
+  nome?: Prisma.StringFilter<"Enfermeiro"> | string
+  cpf?: Prisma.StringFilter<"Enfermeiro"> | string
+  email?: Prisma.StringFilter<"Enfermeiro"> | string
+  telefone?: Prisma.StringFilter<"Enfermeiro"> | string
+  createdAt?: Prisma.DateTimeFilter<"Enfermeiro"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Enfermeiro"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Enfermeiro"> | Date | string | null
+}
+
 export type EnfermeiroCreateWithoutPrescricoesInput = {
   nome: string
   cpf: string
@@ -446,10 +586,12 @@ export type EnfermeiroCreateWithoutPrescricoesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  admin: Prisma.AdminCreateNestedOneWithoutEnfermeirosInput
 }
 
 export type EnfermeiroUncheckedCreateWithoutPrescricoesInput = {
   id?: number
+  id_admin: string
   nome: string
   cpf: string
   email: string
@@ -483,9 +625,56 @@ export type EnfermeiroUpdateWithoutPrescricoesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  admin?: Prisma.AdminUpdateOneRequiredWithoutEnfermeirosNestedInput
 }
 
 export type EnfermeiroUncheckedUpdateWithoutPrescricoesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id_admin?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type EnfermeiroCreateManyAdminInput = {
+  id?: number
+  nome: string
+  cpf: string
+  email: string
+  telefone: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type EnfermeiroUpdateWithoutAdminInput = {
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  prescricoes?: Prisma.PrescricaoUpdateManyWithoutEnfermeiroNestedInput
+}
+
+export type EnfermeiroUncheckedUpdateWithoutAdminInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  telefone?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  prescricoes?: Prisma.PrescricaoUncheckedUpdateManyWithoutEnfermeiroNestedInput
+}
+
+export type EnfermeiroUncheckedUpdateManyWithoutAdminInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
@@ -529,6 +718,7 @@ export type EnfermeiroCountOutputTypeCountPrescricoesArgs<ExtArgs extends runtim
 
 export type EnfermeiroSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  id_admin?: boolean
   nome?: boolean
   cpf?: boolean
   email?: boolean
@@ -536,12 +726,14 @@ export type EnfermeiroSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
   prescricoes?: boolean | Prisma.Enfermeiro$prescricoesArgs<ExtArgs>
   _count?: boolean | Prisma.EnfermeiroCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["enfermeiro"]>
 
 export type EnfermeiroSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  id_admin?: boolean
   nome?: boolean
   cpf?: boolean
   email?: boolean
@@ -549,10 +741,12 @@ export type EnfermeiroSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["enfermeiro"]>
 
 export type EnfermeiroSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  id_admin?: boolean
   nome?: boolean
   cpf?: boolean
   email?: boolean
@@ -560,10 +754,12 @@ export type EnfermeiroSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["enfermeiro"]>
 
 export type EnfermeiroSelectScalar = {
   id?: boolean
+  id_admin?: boolean
   nome?: boolean
   cpf?: boolean
   email?: boolean
@@ -573,21 +769,28 @@ export type EnfermeiroSelectScalar = {
   deletedAt?: boolean
 }
 
-export type EnfermeiroOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "cpf" | "email" | "telefone" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["enfermeiro"]>
+export type EnfermeiroOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_admin" | "nome" | "cpf" | "email" | "telefone" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["enfermeiro"]>
 export type EnfermeiroInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
   prescricoes?: boolean | Prisma.Enfermeiro$prescricoesArgs<ExtArgs>
   _count?: boolean | Prisma.EnfermeiroCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type EnfermeiroIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type EnfermeiroIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type EnfermeiroIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
+}
+export type EnfermeiroIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
+}
 
 export type $EnfermeiroPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Enfermeiro"
   objects: {
+    admin: Prisma.$AdminPayload<ExtArgs>
     prescricoes: Prisma.$PrescricaoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    id_admin: string
     nome: string
     cpf: string
     email: string
@@ -989,6 +1192,7 @@ readonly fields: EnfermeiroFieldRefs;
  */
 export interface Prisma__EnfermeiroClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  admin<T extends Prisma.AdminDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdminDefaultArgs<ExtArgs>>): Prisma.Prisma__AdminClient<runtime.Types.Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   prescricoes<T extends Prisma.Enfermeiro$prescricoesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Enfermeiro$prescricoesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PrescricaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1020,6 +1224,7 @@ export interface Prisma__EnfermeiroClient<T, Null = never, ExtArgs extends runti
  */
 export interface EnfermeiroFieldRefs {
   readonly id: Prisma.FieldRef<"Enfermeiro", 'Int'>
+  readonly id_admin: Prisma.FieldRef<"Enfermeiro", 'String'>
   readonly nome: Prisma.FieldRef<"Enfermeiro", 'String'>
   readonly cpf: Prisma.FieldRef<"Enfermeiro", 'String'>
   readonly email: Prisma.FieldRef<"Enfermeiro", 'String'>
@@ -1281,6 +1486,10 @@ export type EnfermeiroCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exte
    */
   data: Prisma.EnfermeiroCreateManyInput | Prisma.EnfermeiroCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EnfermeiroIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1351,6 +1560,10 @@ export type EnfermeiroUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Exte
    * Limit how many Enfermeiros to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EnfermeiroIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

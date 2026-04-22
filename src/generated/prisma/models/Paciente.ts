@@ -38,6 +38,7 @@ export type PacienteSumAggregateOutputType = {
 
 export type PacienteMinAggregateOutputType = {
   id: number | null
+  id_admin: string | null
   nome: string | null
   cpf: string | null
   idade: number | null
@@ -49,6 +50,7 @@ export type PacienteMinAggregateOutputType = {
 
 export type PacienteMaxAggregateOutputType = {
   id: number | null
+  id_admin: string | null
   nome: string | null
   cpf: string | null
   idade: number | null
@@ -60,6 +62,7 @@ export type PacienteMaxAggregateOutputType = {
 
 export type PacienteCountAggregateOutputType = {
   id: number
+  id_admin: number
   nome: number
   cpf: number
   idade: number
@@ -83,6 +86,7 @@ export type PacienteSumAggregateInputType = {
 
 export type PacienteMinAggregateInputType = {
   id?: true
+  id_admin?: true
   nome?: true
   cpf?: true
   idade?: true
@@ -94,6 +98,7 @@ export type PacienteMinAggregateInputType = {
 
 export type PacienteMaxAggregateInputType = {
   id?: true
+  id_admin?: true
   nome?: true
   cpf?: true
   idade?: true
@@ -105,6 +110,7 @@ export type PacienteMaxAggregateInputType = {
 
 export type PacienteCountAggregateInputType = {
   id?: true
+  id_admin?: true
   nome?: true
   cpf?: true
   idade?: true
@@ -203,6 +209,7 @@ export type PacienteGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type PacienteGroupByOutputType = {
   id: number
+  id_admin: string
   nome: string
   cpf: string
   idade: number
@@ -237,6 +244,7 @@ export type PacienteWhereInput = {
   OR?: Prisma.PacienteWhereInput[]
   NOT?: Prisma.PacienteWhereInput | Prisma.PacienteWhereInput[]
   id?: Prisma.IntFilter<"Paciente"> | number
+  id_admin?: Prisma.StringFilter<"Paciente"> | string
   nome?: Prisma.StringFilter<"Paciente"> | string
   cpf?: Prisma.StringFilter<"Paciente"> | string
   idade?: Prisma.IntFilter<"Paciente"> | number
@@ -244,11 +252,13 @@ export type PacienteWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Paciente"> | Date | string | null
+  admin?: Prisma.XOR<Prisma.AdminScalarRelationFilter, Prisma.AdminWhereInput>
   prescricoes?: Prisma.PrescricaoListRelationFilter
 }
 
 export type PacienteOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  id_admin?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
   idade?: Prisma.SortOrder
@@ -256,6 +266,7 @@ export type PacienteOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  admin?: Prisma.AdminOrderByWithRelationInput
   prescricoes?: Prisma.PrescricaoOrderByRelationAggregateInput
 }
 
@@ -264,6 +275,7 @@ export type PacienteWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.PacienteWhereInput | Prisma.PacienteWhereInput[]
   OR?: Prisma.PacienteWhereInput[]
   NOT?: Prisma.PacienteWhereInput | Prisma.PacienteWhereInput[]
+  id_admin?: Prisma.StringFilter<"Paciente"> | string
   nome?: Prisma.StringFilter<"Paciente"> | string
   cpf?: Prisma.StringFilter<"Paciente"> | string
   idade?: Prisma.IntFilter<"Paciente"> | number
@@ -271,11 +283,13 @@ export type PacienteWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Paciente"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Paciente"> | Date | string | null
+  admin?: Prisma.XOR<Prisma.AdminScalarRelationFilter, Prisma.AdminWhereInput>
   prescricoes?: Prisma.PrescricaoListRelationFilter
 }, "id">
 
 export type PacienteOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  id_admin?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
   idade?: Prisma.SortOrder
@@ -295,6 +309,7 @@ export type PacienteScalarWhereWithAggregatesInput = {
   OR?: Prisma.PacienteScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PacienteScalarWhereWithAggregatesInput | Prisma.PacienteScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Paciente"> | number
+  id_admin?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
   nome?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
   cpf?: Prisma.StringWithAggregatesFilter<"Paciente"> | string
   idade?: Prisma.IntWithAggregatesFilter<"Paciente"> | number
@@ -312,11 +327,13 @@ export type PacienteCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  admin: Prisma.AdminCreateNestedOneWithoutPacientesInput
   prescricoes?: Prisma.PrescricaoCreateNestedManyWithoutPacienteInput
 }
 
 export type PacienteUncheckedCreateInput = {
   id?: number
+  id_admin: string
   nome: string
   cpf: string
   idade: number
@@ -335,11 +352,13 @@ export type PacienteUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  admin?: Prisma.AdminUpdateOneRequiredWithoutPacientesNestedInput
   prescricoes?: Prisma.PrescricaoUpdateManyWithoutPacienteNestedInput
 }
 
 export type PacienteUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  id_admin?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.IntFieldUpdateOperationsInput | number
@@ -352,6 +371,7 @@ export type PacienteUncheckedUpdateInput = {
 
 export type PacienteCreateManyInput = {
   id?: number
+  id_admin: string
   nome: string
   cpf: string
   idade: number
@@ -373,6 +393,7 @@ export type PacienteUpdateManyMutationInput = {
 
 export type PacienteUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  id_admin?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
   idade?: Prisma.IntFieldUpdateOperationsInput | number
@@ -382,8 +403,19 @@ export type PacienteUncheckedUpdateManyInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
+export type PacienteListRelationFilter = {
+  every?: Prisma.PacienteWhereInput
+  some?: Prisma.PacienteWhereInput
+  none?: Prisma.PacienteWhereInput
+}
+
+export type PacienteOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type PacienteCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  id_admin?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
   idade?: Prisma.SortOrder
@@ -400,6 +432,7 @@ export type PacienteAvgOrderByAggregateInput = {
 
 export type PacienteMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  id_admin?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
   idade?: Prisma.SortOrder
@@ -411,6 +444,7 @@ export type PacienteMaxOrderByAggregateInput = {
 
 export type PacienteMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  id_admin?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   cpf?: Prisma.SortOrder
   idade?: Prisma.SortOrder
@@ -428,6 +462,48 @@ export type PacienteSumOrderByAggregateInput = {
 export type PacienteScalarRelationFilter = {
   is?: Prisma.PacienteWhereInput
   isNot?: Prisma.PacienteWhereInput
+}
+
+export type PacienteCreateNestedManyWithoutAdminInput = {
+  create?: Prisma.XOR<Prisma.PacienteCreateWithoutAdminInput, Prisma.PacienteUncheckedCreateWithoutAdminInput> | Prisma.PacienteCreateWithoutAdminInput[] | Prisma.PacienteUncheckedCreateWithoutAdminInput[]
+  connectOrCreate?: Prisma.PacienteCreateOrConnectWithoutAdminInput | Prisma.PacienteCreateOrConnectWithoutAdminInput[]
+  createMany?: Prisma.PacienteCreateManyAdminInputEnvelope
+  connect?: Prisma.PacienteWhereUniqueInput | Prisma.PacienteWhereUniqueInput[]
+}
+
+export type PacienteUncheckedCreateNestedManyWithoutAdminInput = {
+  create?: Prisma.XOR<Prisma.PacienteCreateWithoutAdminInput, Prisma.PacienteUncheckedCreateWithoutAdminInput> | Prisma.PacienteCreateWithoutAdminInput[] | Prisma.PacienteUncheckedCreateWithoutAdminInput[]
+  connectOrCreate?: Prisma.PacienteCreateOrConnectWithoutAdminInput | Prisma.PacienteCreateOrConnectWithoutAdminInput[]
+  createMany?: Prisma.PacienteCreateManyAdminInputEnvelope
+  connect?: Prisma.PacienteWhereUniqueInput | Prisma.PacienteWhereUniqueInput[]
+}
+
+export type PacienteUpdateManyWithoutAdminNestedInput = {
+  create?: Prisma.XOR<Prisma.PacienteCreateWithoutAdminInput, Prisma.PacienteUncheckedCreateWithoutAdminInput> | Prisma.PacienteCreateWithoutAdminInput[] | Prisma.PacienteUncheckedCreateWithoutAdminInput[]
+  connectOrCreate?: Prisma.PacienteCreateOrConnectWithoutAdminInput | Prisma.PacienteCreateOrConnectWithoutAdminInput[]
+  upsert?: Prisma.PacienteUpsertWithWhereUniqueWithoutAdminInput | Prisma.PacienteUpsertWithWhereUniqueWithoutAdminInput[]
+  createMany?: Prisma.PacienteCreateManyAdminInputEnvelope
+  set?: Prisma.PacienteWhereUniqueInput | Prisma.PacienteWhereUniqueInput[]
+  disconnect?: Prisma.PacienteWhereUniqueInput | Prisma.PacienteWhereUniqueInput[]
+  delete?: Prisma.PacienteWhereUniqueInput | Prisma.PacienteWhereUniqueInput[]
+  connect?: Prisma.PacienteWhereUniqueInput | Prisma.PacienteWhereUniqueInput[]
+  update?: Prisma.PacienteUpdateWithWhereUniqueWithoutAdminInput | Prisma.PacienteUpdateWithWhereUniqueWithoutAdminInput[]
+  updateMany?: Prisma.PacienteUpdateManyWithWhereWithoutAdminInput | Prisma.PacienteUpdateManyWithWhereWithoutAdminInput[]
+  deleteMany?: Prisma.PacienteScalarWhereInput | Prisma.PacienteScalarWhereInput[]
+}
+
+export type PacienteUncheckedUpdateManyWithoutAdminNestedInput = {
+  create?: Prisma.XOR<Prisma.PacienteCreateWithoutAdminInput, Prisma.PacienteUncheckedCreateWithoutAdminInput> | Prisma.PacienteCreateWithoutAdminInput[] | Prisma.PacienteUncheckedCreateWithoutAdminInput[]
+  connectOrCreate?: Prisma.PacienteCreateOrConnectWithoutAdminInput | Prisma.PacienteCreateOrConnectWithoutAdminInput[]
+  upsert?: Prisma.PacienteUpsertWithWhereUniqueWithoutAdminInput | Prisma.PacienteUpsertWithWhereUniqueWithoutAdminInput[]
+  createMany?: Prisma.PacienteCreateManyAdminInputEnvelope
+  set?: Prisma.PacienteWhereUniqueInput | Prisma.PacienteWhereUniqueInput[]
+  disconnect?: Prisma.PacienteWhereUniqueInput | Prisma.PacienteWhereUniqueInput[]
+  delete?: Prisma.PacienteWhereUniqueInput | Prisma.PacienteWhereUniqueInput[]
+  connect?: Prisma.PacienteWhereUniqueInput | Prisma.PacienteWhereUniqueInput[]
+  update?: Prisma.PacienteUpdateWithWhereUniqueWithoutAdminInput | Prisma.PacienteUpdateWithWhereUniqueWithoutAdminInput[]
+  updateMany?: Prisma.PacienteUpdateManyWithWhereWithoutAdminInput | Prisma.PacienteUpdateManyWithWhereWithoutAdminInput[]
+  deleteMany?: Prisma.PacienteScalarWhereInput | Prisma.PacienteScalarWhereInput[]
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -452,6 +528,70 @@ export type PacienteUpdateOneRequiredWithoutPrescricoesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.PacienteUpdateToOneWithWhereWithoutPrescricoesInput, Prisma.PacienteUpdateWithoutPrescricoesInput>, Prisma.PacienteUncheckedUpdateWithoutPrescricoesInput>
 }
 
+export type PacienteCreateWithoutAdminInput = {
+  nome: string
+  cpf: string
+  idade: number
+  doenca_cronica: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  prescricoes?: Prisma.PrescricaoCreateNestedManyWithoutPacienteInput
+}
+
+export type PacienteUncheckedCreateWithoutAdminInput = {
+  id?: number
+  nome: string
+  cpf: string
+  idade: number
+  doenca_cronica: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  prescricoes?: Prisma.PrescricaoUncheckedCreateNestedManyWithoutPacienteInput
+}
+
+export type PacienteCreateOrConnectWithoutAdminInput = {
+  where: Prisma.PacienteWhereUniqueInput
+  create: Prisma.XOR<Prisma.PacienteCreateWithoutAdminInput, Prisma.PacienteUncheckedCreateWithoutAdminInput>
+}
+
+export type PacienteCreateManyAdminInputEnvelope = {
+  data: Prisma.PacienteCreateManyAdminInput | Prisma.PacienteCreateManyAdminInput[]
+  skipDuplicates?: boolean
+}
+
+export type PacienteUpsertWithWhereUniqueWithoutAdminInput = {
+  where: Prisma.PacienteWhereUniqueInput
+  update: Prisma.XOR<Prisma.PacienteUpdateWithoutAdminInput, Prisma.PacienteUncheckedUpdateWithoutAdminInput>
+  create: Prisma.XOR<Prisma.PacienteCreateWithoutAdminInput, Prisma.PacienteUncheckedCreateWithoutAdminInput>
+}
+
+export type PacienteUpdateWithWhereUniqueWithoutAdminInput = {
+  where: Prisma.PacienteWhereUniqueInput
+  data: Prisma.XOR<Prisma.PacienteUpdateWithoutAdminInput, Prisma.PacienteUncheckedUpdateWithoutAdminInput>
+}
+
+export type PacienteUpdateManyWithWhereWithoutAdminInput = {
+  where: Prisma.PacienteScalarWhereInput
+  data: Prisma.XOR<Prisma.PacienteUpdateManyMutationInput, Prisma.PacienteUncheckedUpdateManyWithoutAdminInput>
+}
+
+export type PacienteScalarWhereInput = {
+  AND?: Prisma.PacienteScalarWhereInput | Prisma.PacienteScalarWhereInput[]
+  OR?: Prisma.PacienteScalarWhereInput[]
+  NOT?: Prisma.PacienteScalarWhereInput | Prisma.PacienteScalarWhereInput[]
+  id?: Prisma.IntFilter<"Paciente"> | number
+  id_admin?: Prisma.StringFilter<"Paciente"> | string
+  nome?: Prisma.StringFilter<"Paciente"> | string
+  cpf?: Prisma.StringFilter<"Paciente"> | string
+  idade?: Prisma.IntFilter<"Paciente"> | number
+  doenca_cronica?: Prisma.StringFilter<"Paciente"> | string
+  createdAt?: Prisma.DateTimeFilter<"Paciente"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Paciente"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Paciente"> | Date | string | null
+}
+
 export type PacienteCreateWithoutPrescricoesInput = {
   nome: string
   cpf: string
@@ -460,10 +600,12 @@ export type PacienteCreateWithoutPrescricoesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  admin: Prisma.AdminCreateNestedOneWithoutPacientesInput
 }
 
 export type PacienteUncheckedCreateWithoutPrescricoesInput = {
   id?: number
+  id_admin: string
   nome: string
   cpf: string
   idade: number
@@ -497,9 +639,56 @@ export type PacienteUpdateWithoutPrescricoesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  admin?: Prisma.AdminUpdateOneRequiredWithoutPacientesNestedInput
 }
 
 export type PacienteUncheckedUpdateWithoutPrescricoesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id_admin?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  idade?: Prisma.IntFieldUpdateOperationsInput | number
+  doenca_cronica?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type PacienteCreateManyAdminInput = {
+  id?: number
+  nome: string
+  cpf: string
+  idade: number
+  doenca_cronica: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+}
+
+export type PacienteUpdateWithoutAdminInput = {
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  idade?: Prisma.IntFieldUpdateOperationsInput | number
+  doenca_cronica?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  prescricoes?: Prisma.PrescricaoUpdateManyWithoutPacienteNestedInput
+}
+
+export type PacienteUncheckedUpdateWithoutAdminInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  cpf?: Prisma.StringFieldUpdateOperationsInput | string
+  idade?: Prisma.IntFieldUpdateOperationsInput | number
+  doenca_cronica?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  prescricoes?: Prisma.PrescricaoUncheckedUpdateManyWithoutPacienteNestedInput
+}
+
+export type PacienteUncheckedUpdateManyWithoutAdminInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   cpf?: Prisma.StringFieldUpdateOperationsInput | string
@@ -543,6 +732,7 @@ export type PacienteCountOutputTypeCountPrescricoesArgs<ExtArgs extends runtime.
 
 export type PacienteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  id_admin?: boolean
   nome?: boolean
   cpf?: boolean
   idade?: boolean
@@ -550,12 +740,14 @@ export type PacienteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
   prescricoes?: boolean | Prisma.Paciente$prescricoesArgs<ExtArgs>
   _count?: boolean | Prisma.PacienteCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["paciente"]>
 
 export type PacienteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  id_admin?: boolean
   nome?: boolean
   cpf?: boolean
   idade?: boolean
@@ -563,10 +755,12 @@ export type PacienteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["paciente"]>
 
 export type PacienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  id_admin?: boolean
   nome?: boolean
   cpf?: boolean
   idade?: boolean
@@ -574,10 +768,12 @@ export type PacienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["paciente"]>
 
 export type PacienteSelectScalar = {
   id?: boolean
+  id_admin?: boolean
   nome?: boolean
   cpf?: boolean
   idade?: boolean
@@ -587,21 +783,28 @@ export type PacienteSelectScalar = {
   deletedAt?: boolean
 }
 
-export type PacienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "cpf" | "idade" | "doenca_cronica" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["paciente"]>
+export type PacienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_admin" | "nome" | "cpf" | "idade" | "doenca_cronica" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["paciente"]>
 export type PacienteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
   prescricoes?: boolean | Prisma.Paciente$prescricoesArgs<ExtArgs>
   _count?: boolean | Prisma.PacienteCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type PacienteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type PacienteIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type PacienteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
+}
+export type PacienteIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
+}
 
 export type $PacientePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Paciente"
   objects: {
+    admin: Prisma.$AdminPayload<ExtArgs>
     prescricoes: Prisma.$PrescricaoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    id_admin: string
     nome: string
     cpf: string
     idade: number
@@ -1003,6 +1206,7 @@ readonly fields: PacienteFieldRefs;
  */
 export interface Prisma__PacienteClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  admin<T extends Prisma.AdminDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AdminDefaultArgs<ExtArgs>>): Prisma.Prisma__AdminClient<runtime.Types.Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   prescricoes<T extends Prisma.Paciente$prescricoesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Paciente$prescricoesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PrescricaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1034,6 +1238,7 @@ export interface Prisma__PacienteClient<T, Null = never, ExtArgs extends runtime
  */
 export interface PacienteFieldRefs {
   readonly id: Prisma.FieldRef<"Paciente", 'Int'>
+  readonly id_admin: Prisma.FieldRef<"Paciente", 'String'>
   readonly nome: Prisma.FieldRef<"Paciente", 'String'>
   readonly cpf: Prisma.FieldRef<"Paciente", 'String'>
   readonly idade: Prisma.FieldRef<"Paciente", 'Int'>
@@ -1295,6 +1500,10 @@ export type PacienteCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    */
   data: Prisma.PacienteCreateManyInput | Prisma.PacienteCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PacienteIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1365,6 +1574,10 @@ export type PacienteUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many Pacientes to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PacienteIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

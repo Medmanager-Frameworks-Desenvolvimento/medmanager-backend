@@ -18,16 +18,21 @@ model Admin {
   nome         String
   email        String       @unique
   senha        String
-  status       String       @default("Ativo")
   createdAt    DateTime     @default(now()) @db.Timestamptz(3)
   updatedAt    DateTime     @updatedAt @db.Timestamptz(3)
   deletedAt    DateTime?
+
+  pacientes    Paciente[]
+  enfermeiros  Enfermeiro[]
+  medicamentos Medicamento[]
+  prescricoes  Prescricao[]
 
   @@map("admin") 
 }
 
 model Paciente {
   id             Int          @id @default(autoincrement())
+  id_admin       String      
   nome           String       
   cpf            String       
   idade          Int
@@ -35,6 +40,8 @@ model Paciente {
   createdAt      DateTime     @default(now()) @db.Timestamptz(3)
   updatedAt      DateTime     @updatedAt @db.Timestamptz(3)
   deletedAt      DateTime?
+  
+  admin          Admin        @relation(fields: [id_admin], references: [id])
   prescricoes    Prescricao[]
 
   @@map("pacientes")
@@ -42,6 +49,7 @@ model Paciente {
 
 model Enfermeiro {
   id            Int          @id @default(autoincrement())
+  id_admin      String       
   nome          String       
   cpf           String       
   email         String       
@@ -49,6 +57,8 @@ model Enfermeiro {
   createdAt     DateTime     @default(now()) @db.Timestamptz(3)
   updatedAt     DateTime     @updatedAt @db.Timestamptz(3)
   deletedAt     DateTime?
+  
+  admin         Admin        @relation(fields: [id_admin], references: [id])
   prescricoes   Prescricao[]
 
   @@map("enfermeiros")
@@ -56,6 +66,7 @@ model Enfermeiro {
 
 model Medicamento {
   id             Int          @id @default(autoincrement())
+  id_admin       String       
   nome           String       
   descricao      String       
   quantidade     Int
@@ -63,6 +74,8 @@ model Medicamento {
   createdAt      DateTime     @default(now()) @db.Timestamptz(3)
   updatedAt      DateTime     @updatedAt @db.Timestamptz(3)
   deletedAt      DateTime? 
+  
+  admin          Admin        @relation(fields: [id_admin], references: [id])
   prescricoes    Prescricao[]
 
   @@map("medicamentos")
@@ -70,6 +83,7 @@ model Medicamento {
 
 model Prescricao {
   id             Int          @id @default(autoincrement())
+  id_admin       String       
   id_paciente    Int
   id_enfermeiro  Int
   id_medicamento Int
@@ -80,6 +94,7 @@ model Prescricao {
   updatedAt      DateTime     @updatedAt @db.Timestamptz(3)
   deletedAt      DateTime?
 
+  admin          Admin        @relation(fields: [id_admin], references: [id])
   paciente       Paciente     @relation(fields: [id_paciente], references: [id])
   enfermeiro     Enfermeiro   @relation(fields: [id_enfermeiro], references: [id])
   medicamento    Medicamento  @relation(fields: [id_medicamento], references: [id])
