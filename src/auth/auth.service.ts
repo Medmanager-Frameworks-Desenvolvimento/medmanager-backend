@@ -20,10 +20,6 @@ export class AuthService {
       throw new UnauthorizedException('Admin não encontrado!');
     }
 
-    if (admin.status !== 'Ativo') {
-      throw new UnauthorizedException('Administrador inativo');
-    }
-
     const valid = await bcrypt.compare(senha, admin.senha);
     
     if (!valid) {
@@ -41,7 +37,6 @@ export class AuthService {
         id: admin.id,
         nome: admin.nome,
         email: admin.email,
-        status: admin.status,
       },
     };
   }
