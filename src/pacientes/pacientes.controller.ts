@@ -41,7 +41,7 @@ export class PacientesController {
   @HttpCode(HttpStatus.OK) 
   async findOne(
     @CurrentAdmin() admin: { sub: string },
-    @Param('id', ParseIntPipe) id: number,i
+    @Param('id', ParseIntPipe) id: number,
   ) {
     return this.pacientesService.findOne(admin.sub, id);
   }
