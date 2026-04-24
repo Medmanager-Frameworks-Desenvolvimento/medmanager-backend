@@ -44,6 +44,8 @@ model Paciente {
   admin          Admin        @relation(fields: [id_admin], references: [id])
   prescricoes    Prescricao[]
 
+  @@unique([cpf, id_admin])
+
   @@map("pacientes")
 }
 
@@ -61,6 +63,9 @@ model Enfermeiro {
   admin         Admin        @relation(fields: [id_admin], references: [id])
   prescricoes   Prescricao[]
 
+  @@unique([cpf, id_admin])
+  @@unique([email, id_admin])
+  
   @@map("enfermeiros")
 }
 
