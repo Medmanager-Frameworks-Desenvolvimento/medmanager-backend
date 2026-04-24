@@ -388,7 +388,8 @@ export const ModelName = {
   Paciente: 'Paciente',
   Enfermeiro: 'Enfermeiro',
   Medicamento: 'Medicamento',
-  Prescricao: 'Prescricao'
+  Prescricao: 'Prescricao',
+  CatalogoMedicamento: 'CatalogoMedicamento'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -404,7 +405,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "paciente" | "enfermeiro" | "medicamento" | "prescricao"
+    modelProps: "admin" | "paciente" | "enfermeiro" | "medicamento" | "prescricao" | "catalogoMedicamento"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -778,6 +779,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CatalogoMedicamento: {
+      payload: Prisma.$CatalogoMedicamentoPayload<ExtArgs>
+      fields: Prisma.CatalogoMedicamentoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CatalogoMedicamentoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CatalogoMedicamentoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CatalogoMedicamentoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CatalogoMedicamentoPayload>
+        }
+        findFirst: {
+          args: Prisma.CatalogoMedicamentoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CatalogoMedicamentoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CatalogoMedicamentoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CatalogoMedicamentoPayload>
+        }
+        findMany: {
+          args: Prisma.CatalogoMedicamentoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CatalogoMedicamentoPayload>[]
+        }
+        create: {
+          args: Prisma.CatalogoMedicamentoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CatalogoMedicamentoPayload>
+        }
+        createMany: {
+          args: Prisma.CatalogoMedicamentoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CatalogoMedicamentoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CatalogoMedicamentoPayload>[]
+        }
+        delete: {
+          args: Prisma.CatalogoMedicamentoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CatalogoMedicamentoPayload>
+        }
+        update: {
+          args: Prisma.CatalogoMedicamentoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CatalogoMedicamentoPayload>
+        }
+        deleteMany: {
+          args: Prisma.CatalogoMedicamentoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CatalogoMedicamentoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CatalogoMedicamentoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CatalogoMedicamentoPayload>[]
+        }
+        upsert: {
+          args: Prisma.CatalogoMedicamentoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CatalogoMedicamentoPayload>
+        }
+        aggregate: {
+          args: Prisma.CatalogoMedicamentoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCatalogoMedicamento>
+        }
+        groupBy: {
+          args: Prisma.CatalogoMedicamentoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CatalogoMedicamentoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CatalogoMedicamentoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CatalogoMedicamentoCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -890,6 +965,17 @@ export const PrescricaoScalarFieldEnum = {
 } as const
 
 export type PrescricaoScalarFieldEnum = (typeof PrescricaoScalarFieldEnum)[keyof typeof PrescricaoScalarFieldEnum]
+
+
+export const CatalogoMedicamentoScalarFieldEnum = {
+  id: 'id',
+  nome_comercial: 'nome_comercial',
+  principio_ativo: 'principio_ativo',
+  fabricante: 'fabricante',
+  registro_anvisa: 'registro_anvisa'
+} as const
+
+export type CatalogoMedicamentoScalarFieldEnum = (typeof CatalogoMedicamentoScalarFieldEnum)[keyof typeof CatalogoMedicamentoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1077,6 +1163,7 @@ export type GlobalOmitConfig = {
   enfermeiro?: Prisma.EnfermeiroOmit
   medicamento?: Prisma.MedicamentoOmit
   prescricao?: Prisma.PrescricaoOmit
+  catalogoMedicamento?: Prisma.CatalogoMedicamentoOmit
 }
 
 /* Types for Logging */

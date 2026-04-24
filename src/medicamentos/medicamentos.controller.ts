@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, HttpCode, HttpStatus, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, HttpCode, HttpStatus, ParseIntPipe, Query } from '@nestjs/common';
 import { MedicamentosService } from './medicamentos.service';
 import { CreateMedicamentoDto } from './dto/create-medicamento.dto';
 import { UpdateMedicamentoDto } from './dto/update-medicamento.dto';
@@ -9,6 +9,15 @@ import { AuthGuard } from 'src/auth/auth.guard';
 @Controller('medicamentos')
 export class MedicamentosController {
   constructor(private readonly medicamentosService: MedicamentosService) {}
+
+  @Get('catalogo')
+  @HttpCode(HttpStatus.OK)
+  async buscarCatalogo(@Query('busca') busca: string) {
+    if (!busca || busca.length < 3) {
+      return [];
+    }
+    return this.medicamentosService.buscarNoCatalogo(busca);
+  }
 
   @Post()
   @HttpCode(HttpStatus.CREATED) 
@@ -27,7 +36,7 @@ export class MedicamentosController {
 
   @Get(':id')
   @HttpCode(HttpStatus.OK)
-  findOne(
+  async findOne( 
     @CurrentAdmin() admin: { sub: string },
     @Param('id', ParseIntPipe) id: number
   ) {
@@ -50,6 +59,7 @@ export class MedicamentosController {
     @CurrentAdmin() admin: { sub: string },
     @Param('id', ParseIntPipe) id: number,
   ) {
-    return this.medicamentosService.remove(admin.sub, id);
+    await this.medicamentosService.remove(admin.sub, id);
+    return; 
   }
 }

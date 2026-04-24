@@ -101,3 +101,13 @@ model Prescricao {
 
   @@map("prescricoes")
 }
+
+model CatalogoMedicamento {
+  id               Int      @id @default(autoincrement())
+  nome_comercial   String   
+  principio_ativo  String   
+  fabricante       String?  
+  registro_anvisa  String?  @unique 
+
+  @@map("catalogo_medicamentos")
+}

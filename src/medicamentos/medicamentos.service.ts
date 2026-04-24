@@ -7,10 +7,24 @@ import { PrismaService } from 'src/database/prisma.service';
 export class MedicamentosService {
   constructor(private prisma: PrismaService) {}
 
+  async buscarNoCatalogo(termo: string) {
+    return await this.prisma.catalogoMedicamento.findMany({
+      where: {
+        nome_comercial: { contains: termo, mode: 'insensitive' },
+      },
+      distinct: ['nome_comercial'], 
+      take: 15,
+      select: {
+        nome_comercial: true,
+      },
+    });
+  }
+
   async create(idAdmin: string, data: CreateMedicamentoDto) {
     return await this.prisma.medicamento.create({
       data: {
         ...data,
+        validade: new Date(data.validade), 
         id_admin: idAdmin
       }
     });
@@ -26,13 +40,19 @@ export class MedicamentosService {
   }
 
   async findOne(idAdmin: string, id: number) {
-    return await this.prisma.medicamento.findUnique({
+    const medicamento = await this.prisma.medicamento.findFirst({
       where: {
+        id: id,
         id_admin: idAdmin,
-        id,
         deletedAt: null
       }
-    })
+    });
+
+    if (!medicamento) {
+      throw new NotFoundException('Medicamento não encontrado ou acesso negado.');
+    }
+
+    return medicamento;
   }
 
   async update(idAdmin: string, id: number, updateMedicamentoDto: UpdateMedicamentoDto) {
@@ -48,9 +68,14 @@ export class MedicamentosService {
       throw new NotFoundException('Medicamento não encontrado ou acesso negado.');
     }
 
+    const dataAtualizada: any = { ...updateMedicamentoDto };
+    if (dataAtualizada.validade) {
+      dataAtualizada.validade = new Date(dataAtualizada.validade);
+    }
+
     return await this.prisma.medicamento.update({
-      where: { id: id},
-      data: updateMedicamentoDto,
+      where: { id: id },
+      data: dataAtualizada,
     });
   }
 
