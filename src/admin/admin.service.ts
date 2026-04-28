@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma.service';
 import { Admin, Prisma } from 'src/generated/prisma/client';
 import { CreateAdminDto } from './dto/create-admin.dto';
@@ -17,7 +17,7 @@ export class AdminService {
         });
     }
 
-    async createAdmin(createAdminDto: CreateAdminDto) {
+    async create(createAdminDto: CreateAdminDto) {
         const hashPassword = await bcrypt.hash(createAdminDto.senha, 12);
         const newAdmin = createAdminDto
         return await this.prisma.admin.create({
@@ -25,7 +25,7 @@ export class AdminService {
         });
     }
     
-    async updateAdmin(id: string, data: UpdateAdminDto): Promise<Admin> {
+    async update(id: string, data: UpdateAdminDto): Promise<Admin> {
         return this.prisma.admin.update({
             where: { id },
             data
@@ -38,9 +38,23 @@ export class AdminService {
         });
     }
 
-    async deleteAdmin(where: Prisma.AdminWhereUniqueInput): Promise<Admin> {
-        return this.prisma.admin.delete({
-            where
+    async remove(where: Prisma.AdminWhereUniqueInput): Promise<Admin> {
+        const admin = await this.prisma.admin.findUnique({ where });
+
+        if (!admin) {
+        throw new NotFoundException('Administrador não encontrado.');
+        }
+
+        const adminId = admin.id;
+
+        return await this.prisma.$transaction(async (del) => {
+        
+        await del.prescricao.deleteMany({ where: { id_admin: adminId } });
+        await del.medicamento.deleteMany({ where: { id_admin: adminId } });
+        await del.enfermeiro.deleteMany({ where: { id_admin: adminId } });
+        await del.paciente.deleteMany({ where: { id_admin: adminId } });
+        return await del.admin.delete({ where: { id: adminId } });
+        
         });
     }
 }

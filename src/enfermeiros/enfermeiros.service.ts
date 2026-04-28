@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateEnfermeiroDto } from './dto/create-enfermeiro.dto';
 import { UpdateEnfermeiroDto } from './dto/update-enfermeiro.dto';
 import { PrismaService } from 'src/database/prisma.service';
+import { randomBytes } from 'crypto';
 
 @Injectable()
 export class EnfermeirosService {
@@ -67,10 +68,15 @@ export class EnfermeirosService {
       throw new NotFoundException('Enfermeiro não encontrado ou já foi removido.');
     }
 
+    const hash = randomBytes(4).toString('hex');
+    const sufixoExclusao = `_deletado_${Date.now()}_${hash}`;
+
     return await this.prisma.enfermeiro.update({
       where: { id: id },
       data: { 
-        deletedAt: new Date() 
+        deletedAt: new Date(),
+        email: `${enfermeiro.email}${sufixoExclusao}`,
+        cpf: `${enfermeiro.cpf}${sufixoExclusao}`
       },
     });
   }

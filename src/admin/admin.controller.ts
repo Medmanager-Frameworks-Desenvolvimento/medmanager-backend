@@ -19,8 +19,8 @@ export class AdminController {
 
     @Post('/signup')
     @Public()
-    async signUpAdmin(@Body(new ValidationPipe()) adminData: CreateAdminDto): Promise<Admin> {
-        return this.adminService.createAdmin(adminData)
+    async create(@Body(new ValidationPipe()) adminData: CreateAdminDto): Promise<Admin> {
+        return this.adminService.create(adminData)
     }
 
     @UseGuards(AuthGuard)
@@ -31,17 +31,17 @@ export class AdminController {
 
     @UseGuards(AuthGuard)
     @Patch(':id')
-    async updateAdmin(
+    async update(
         @Param('id') id: string, 
         @Body(new ValidationPipe()) updateAdminDto: UpdateAdminDto 
     ): Promise<Admin> {
-        return this.adminService.updateAdmin(id, updateAdminDto);
+        return this.adminService.update(id, updateAdminDto);
     }
 
     @UseGuards(AuthGuard)
     @Delete(':id')
-    async deleteAdmin(@Param('id') id: string): Promise<Admin> {
-        return this.adminService.deleteAdmin({ id: id });
+    async remove(@Param('id') id: string): Promise<Admin> {
+        return this.adminService.remove({ id: id });
     }
 
 }
