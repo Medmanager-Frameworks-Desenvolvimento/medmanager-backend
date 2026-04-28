@@ -10,12 +10,13 @@ import { AuthModule } from './auth/auth.module';
 import { PacientesModule } from './pacientes/pacientes.module';
 import { EnfermeirosModule } from './enfermeiros/enfermeiros.module';
 import { MedicamentosModule } from './medicamentos/medicamentos.module';
+import { PrescricoesModule } from './prescricoes/prescricoes.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true,  envFilePath: '.env'}),
     DatabaseModule, 
-    AdminModule, AuthModule, PacientesModule, EnfermeirosModule, MedicamentosModule,
+    AdminModule, AuthModule, PacientesModule, EnfermeirosModule, MedicamentosModule, PrescricoesModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService, AuthService],
