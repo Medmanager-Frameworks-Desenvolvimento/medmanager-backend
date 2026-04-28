@@ -4,11 +4,12 @@ import {
     UseGuards,
     Controller, 
     ValidationPipe,
-    Post, Delete, Get, Patch 
+    Post, Delete, Get, Patch,
+    HttpCode,
+    HttpStatus
 } from '@nestjs/common';
 import { Public } from 'src/common/decorators';
-import { Admin } from 'src/generated/prisma/client';
-import { AdminService } from './admin.service'
+import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
@@ -19,29 +20,33 @@ export class AdminController {
 
     @Post('/signup')
     @Public()
-    async create(@Body(new ValidationPipe()) adminData: CreateAdminDto): Promise<Admin> {
-        return this.adminService.create(adminData)
+    @HttpCode(HttpStatus.CREATED)
+    async create(@Body(new ValidationPipe()) adminData: CreateAdminDto) {
+        return this.adminService.create(adminData);
     }
 
     @UseGuards(AuthGuard)
     @Get(':id')
+    @HttpCode(HttpStatus.OK)
     async findOne(@Param('id') id: string) {
         return this.adminService.findOne(id);
     }
 
     @UseGuards(AuthGuard)
     @Patch(':id')
+    @HttpCode(HttpStatus.OK)
     async update(
         @Param('id') id: string, 
         @Body(new ValidationPipe()) updateAdminDto: UpdateAdminDto 
-    ): Promise<Admin> {
+    ) {
         return this.adminService.update(id, updateAdminDto);
     }
 
     @UseGuards(AuthGuard)
     @Delete(':id')
-    async remove(@Param('id') id: string): Promise<Admin> {
-        return this.adminService.remove({ id: id });
+    @HttpCode(HttpStatus.NO_CONTENT)
+    async remove(@Param('id') id: string) {
+        await this.adminService.remove({ id: id });
+        return;
     }
-
 }
