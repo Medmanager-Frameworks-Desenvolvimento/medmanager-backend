@@ -1,19 +1,13 @@
-import {
-    Body, 
-    Param, 
-    UseGuards,
-    Controller, 
-    ValidationPipe,
-    Post, Delete, Get, Patch,
-    HttpCode,
-    HttpStatus
-} from '@nestjs/common';
+import { Body, Param, UseGuards, Controller, ValidationPipe, Post, Delete, Get, Patch, HttpCode, HttpStatus } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Public } from 'src/common/decorators';
 import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
 
+@ApiTags('Admin') 
+@ApiBearerAuth()
 @Controller('admin')
 export class AdminController {
     constructor(private adminService: AdminService) {}

@@ -1,10 +1,13 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, HttpStatus, UseGuards, ParseIntPipe } from '@nestjs/common';
+import { ApiTags, ApiBearerAuth} from '@nestjs/swagger'; 
 import { EnfermeirosService } from './enfermeiros.service';
 import { CreateEnfermeiroDto } from './dto/create-enfermeiro.dto';
 import { UpdateEnfermeiroDto } from './dto/update-enfermeiro.dto';
 import { CurrentAdmin } from 'src/common/decorators';
 import { AuthGuard } from 'src/auth/auth.guard';
 
+@ApiTags('Enfermeiros') 
+@ApiBearerAuth()
 @UseGuards(AuthGuard) 
 @Controller('enfermeiros')
 export class EnfermeirosController {
