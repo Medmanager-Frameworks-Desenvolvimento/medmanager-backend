@@ -41,6 +41,8 @@ export class PrescricoesService {
         id_enfermeiro: data.id_enfermeiro,
         id_medicamento: data.id_medicamento,
         dosagem: data.dosagem,
+        quantidade: data.quantidade,
+        unidade_medida: data.unidade_medida,
         turno: data.turno,
         data_hora: new Date(data.data_hora),
       },

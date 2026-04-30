@@ -140,6 +140,8 @@ export const PrescricaoScalarFieldEnum = {
   id_enfermeiro: 'id_enfermeiro',
   id_medicamento: 'id_medicamento',
   dosagem: 'dosagem',
+  quantidade: 'quantidade',
+  unidade_medida: 'unidade_medida',
   turno: 'turno',
   data_hora: 'data_hora',
   createdAt: 'createdAt',

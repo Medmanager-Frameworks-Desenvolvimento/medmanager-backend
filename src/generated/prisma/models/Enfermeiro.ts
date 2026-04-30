@@ -268,6 +268,8 @@ export type EnfermeiroOrderByWithRelationInput = {
 
 export type EnfermeiroWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  cpf_id_admin?: Prisma.EnfermeiroCpfId_adminCompoundUniqueInput
+  email_id_admin?: Prisma.EnfermeiroEmailId_adminCompoundUniqueInput
   AND?: Prisma.EnfermeiroWhereInput | Prisma.EnfermeiroWhereInput[]
   OR?: Prisma.EnfermeiroWhereInput[]
   NOT?: Prisma.EnfermeiroWhereInput | Prisma.EnfermeiroWhereInput[]
@@ -281,7 +283,7 @@ export type EnfermeiroWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"Enfermeiro"> | Date | string | null
   admin?: Prisma.XOR<Prisma.AdminScalarRelationFilter, Prisma.AdminWhereInput>
   prescricoes?: Prisma.PrescricaoListRelationFilter
-}, "id">
+}, "id" | "cpf_id_admin" | "email_id_admin">
 
 export type EnfermeiroOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -407,6 +409,16 @@ export type EnfermeiroListRelationFilter = {
 
 export type EnfermeiroOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type EnfermeiroCpfId_adminCompoundUniqueInput = {
+  cpf: string
+  id_admin: string
+}
+
+export type EnfermeiroEmailId_adminCompoundUniqueInput = {
+  email: string
+  id_admin: string
 }
 
 export type EnfermeiroCountOrderByAggregateInput = {

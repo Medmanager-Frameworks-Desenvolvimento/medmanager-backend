@@ -31,7 +31,7 @@ export type PrescricaoAvgAggregateOutputType = {
   id_paciente: number | null
   id_enfermeiro: number | null
   id_medicamento: number | null
-  dosagem: number | null
+  quantidade: number | null
 }
 
 export type PrescricaoSumAggregateOutputType = {
@@ -39,7 +39,7 @@ export type PrescricaoSumAggregateOutputType = {
   id_paciente: number | null
   id_enfermeiro: number | null
   id_medicamento: number | null
-  dosagem: number | null
+  quantidade: number | null
 }
 
 export type PrescricaoMinAggregateOutputType = {
@@ -48,7 +48,9 @@ export type PrescricaoMinAggregateOutputType = {
   id_paciente: number | null
   id_enfermeiro: number | null
   id_medicamento: number | null
-  dosagem: number | null
+  dosagem: string | null
+  quantidade: number | null
+  unidade_medida: string | null
   turno: string | null
   data_hora: Date | null
   createdAt: Date | null
@@ -62,7 +64,9 @@ export type PrescricaoMaxAggregateOutputType = {
   id_paciente: number | null
   id_enfermeiro: number | null
   id_medicamento: number | null
-  dosagem: number | null
+  dosagem: string | null
+  quantidade: number | null
+  unidade_medida: string | null
   turno: string | null
   data_hora: Date | null
   createdAt: Date | null
@@ -77,6 +81,8 @@ export type PrescricaoCountAggregateOutputType = {
   id_enfermeiro: number
   id_medicamento: number
   dosagem: number
+  quantidade: number
+  unidade_medida: number
   turno: number
   data_hora: number
   createdAt: number
@@ -91,7 +97,7 @@ export type PrescricaoAvgAggregateInputType = {
   id_paciente?: true
   id_enfermeiro?: true
   id_medicamento?: true
-  dosagem?: true
+  quantidade?: true
 }
 
 export type PrescricaoSumAggregateInputType = {
@@ -99,7 +105,7 @@ export type PrescricaoSumAggregateInputType = {
   id_paciente?: true
   id_enfermeiro?: true
   id_medicamento?: true
-  dosagem?: true
+  quantidade?: true
 }
 
 export type PrescricaoMinAggregateInputType = {
@@ -109,6 +115,8 @@ export type PrescricaoMinAggregateInputType = {
   id_enfermeiro?: true
   id_medicamento?: true
   dosagem?: true
+  quantidade?: true
+  unidade_medida?: true
   turno?: true
   data_hora?: true
   createdAt?: true
@@ -123,6 +131,8 @@ export type PrescricaoMaxAggregateInputType = {
   id_enfermeiro?: true
   id_medicamento?: true
   dosagem?: true
+  quantidade?: true
+  unidade_medida?: true
   turno?: true
   data_hora?: true
   createdAt?: true
@@ -137,6 +147,8 @@ export type PrescricaoCountAggregateInputType = {
   id_enfermeiro?: true
   id_medicamento?: true
   dosagem?: true
+  quantidade?: true
+  unidade_medida?: true
   turno?: true
   data_hora?: true
   createdAt?: true
@@ -237,7 +249,9 @@ export type PrescricaoGroupByOutputType = {
   id_paciente: number
   id_enfermeiro: number
   id_medicamento: number
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date
   createdAt: Date
@@ -274,7 +288,9 @@ export type PrescricaoWhereInput = {
   id_paciente?: Prisma.IntFilter<"Prescricao"> | number
   id_enfermeiro?: Prisma.IntFilter<"Prescricao"> | number
   id_medicamento?: Prisma.IntFilter<"Prescricao"> | number
-  dosagem?: Prisma.FloatFilter<"Prescricao"> | number
+  dosagem?: Prisma.StringFilter<"Prescricao"> | string
+  quantidade?: Prisma.FloatFilter<"Prescricao"> | number
+  unidade_medida?: Prisma.StringFilter<"Prescricao"> | string
   turno?: Prisma.StringFilter<"Prescricao"> | string
   data_hora?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
@@ -293,6 +309,8 @@ export type PrescricaoOrderByWithRelationInput = {
   id_enfermeiro?: Prisma.SortOrder
   id_medicamento?: Prisma.SortOrder
   dosagem?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
+  unidade_medida?: Prisma.SortOrder
   turno?: Prisma.SortOrder
   data_hora?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -313,7 +331,9 @@ export type PrescricaoWhereUniqueInput = Prisma.AtLeast<{
   id_paciente?: Prisma.IntFilter<"Prescricao"> | number
   id_enfermeiro?: Prisma.IntFilter<"Prescricao"> | number
   id_medicamento?: Prisma.IntFilter<"Prescricao"> | number
-  dosagem?: Prisma.FloatFilter<"Prescricao"> | number
+  dosagem?: Prisma.StringFilter<"Prescricao"> | string
+  quantidade?: Prisma.FloatFilter<"Prescricao"> | number
+  unidade_medida?: Prisma.StringFilter<"Prescricao"> | string
   turno?: Prisma.StringFilter<"Prescricao"> | string
   data_hora?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
@@ -332,6 +352,8 @@ export type PrescricaoOrderByWithAggregationInput = {
   id_enfermeiro?: Prisma.SortOrder
   id_medicamento?: Prisma.SortOrder
   dosagem?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
+  unidade_medida?: Prisma.SortOrder
   turno?: Prisma.SortOrder
   data_hora?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -353,7 +375,9 @@ export type PrescricaoScalarWhereWithAggregatesInput = {
   id_paciente?: Prisma.IntWithAggregatesFilter<"Prescricao"> | number
   id_enfermeiro?: Prisma.IntWithAggregatesFilter<"Prescricao"> | number
   id_medicamento?: Prisma.IntWithAggregatesFilter<"Prescricao"> | number
-  dosagem?: Prisma.FloatWithAggregatesFilter<"Prescricao"> | number
+  dosagem?: Prisma.StringWithAggregatesFilter<"Prescricao"> | string
+  quantidade?: Prisma.FloatWithAggregatesFilter<"Prescricao"> | number
+  unidade_medida?: Prisma.StringWithAggregatesFilter<"Prescricao"> | string
   turno?: Prisma.StringWithAggregatesFilter<"Prescricao"> | string
   data_hora?: Prisma.DateTimeWithAggregatesFilter<"Prescricao"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Prescricao"> | Date | string
@@ -362,7 +386,9 @@ export type PrescricaoScalarWhereWithAggregatesInput = {
 }
 
 export type PrescricaoCreateInput = {
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -380,7 +406,9 @@ export type PrescricaoUncheckedCreateInput = {
   id_paciente: number
   id_enfermeiro: number
   id_medicamento: number
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -389,7 +417,9 @@ export type PrescricaoUncheckedCreateInput = {
 }
 
 export type PrescricaoUpdateInput = {
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -407,7 +437,9 @@ export type PrescricaoUncheckedUpdateInput = {
   id_paciente?: Prisma.IntFieldUpdateOperationsInput | number
   id_enfermeiro?: Prisma.IntFieldUpdateOperationsInput | number
   id_medicamento?: Prisma.IntFieldUpdateOperationsInput | number
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -421,7 +453,9 @@ export type PrescricaoCreateManyInput = {
   id_paciente: number
   id_enfermeiro: number
   id_medicamento: number
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -430,7 +464,9 @@ export type PrescricaoCreateManyInput = {
 }
 
 export type PrescricaoUpdateManyMutationInput = {
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -444,7 +480,9 @@ export type PrescricaoUncheckedUpdateManyInput = {
   id_paciente?: Prisma.IntFieldUpdateOperationsInput | number
   id_enfermeiro?: Prisma.IntFieldUpdateOperationsInput | number
   id_medicamento?: Prisma.IntFieldUpdateOperationsInput | number
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -469,6 +507,8 @@ export type PrescricaoCountOrderByAggregateInput = {
   id_enfermeiro?: Prisma.SortOrder
   id_medicamento?: Prisma.SortOrder
   dosagem?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
+  unidade_medida?: Prisma.SortOrder
   turno?: Prisma.SortOrder
   data_hora?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -481,7 +521,7 @@ export type PrescricaoAvgOrderByAggregateInput = {
   id_paciente?: Prisma.SortOrder
   id_enfermeiro?: Prisma.SortOrder
   id_medicamento?: Prisma.SortOrder
-  dosagem?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
 }
 
 export type PrescricaoMaxOrderByAggregateInput = {
@@ -491,6 +531,8 @@ export type PrescricaoMaxOrderByAggregateInput = {
   id_enfermeiro?: Prisma.SortOrder
   id_medicamento?: Prisma.SortOrder
   dosagem?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
+  unidade_medida?: Prisma.SortOrder
   turno?: Prisma.SortOrder
   data_hora?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -505,6 +547,8 @@ export type PrescricaoMinOrderByAggregateInput = {
   id_enfermeiro?: Prisma.SortOrder
   id_medicamento?: Prisma.SortOrder
   dosagem?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
+  unidade_medida?: Prisma.SortOrder
   turno?: Prisma.SortOrder
   data_hora?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -517,7 +561,7 @@ export type PrescricaoSumOrderByAggregateInput = {
   id_paciente?: Prisma.SortOrder
   id_enfermeiro?: Prisma.SortOrder
   id_medicamento?: Prisma.SortOrder
-  dosagem?: Prisma.SortOrder
+  quantidade?: Prisma.SortOrder
 }
 
 export type PrescricaoCreateNestedManyWithoutAdminInput = {
@@ -697,7 +741,9 @@ export type FloatFieldUpdateOperationsInput = {
 }
 
 export type PrescricaoCreateWithoutAdminInput = {
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -713,7 +759,9 @@ export type PrescricaoUncheckedCreateWithoutAdminInput = {
   id_paciente: number
   id_enfermeiro: number
   id_medicamento: number
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -756,7 +804,9 @@ export type PrescricaoScalarWhereInput = {
   id_paciente?: Prisma.IntFilter<"Prescricao"> | number
   id_enfermeiro?: Prisma.IntFilter<"Prescricao"> | number
   id_medicamento?: Prisma.IntFilter<"Prescricao"> | number
-  dosagem?: Prisma.FloatFilter<"Prescricao"> | number
+  dosagem?: Prisma.StringFilter<"Prescricao"> | string
+  quantidade?: Prisma.FloatFilter<"Prescricao"> | number
+  unidade_medida?: Prisma.StringFilter<"Prescricao"> | string
   turno?: Prisma.StringFilter<"Prescricao"> | string
   data_hora?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
@@ -765,7 +815,9 @@ export type PrescricaoScalarWhereInput = {
 }
 
 export type PrescricaoCreateWithoutPacienteInput = {
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -781,7 +833,9 @@ export type PrescricaoUncheckedCreateWithoutPacienteInput = {
   id_admin: string
   id_enfermeiro: number
   id_medicamento: number
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -816,7 +870,9 @@ export type PrescricaoUpdateManyWithWhereWithoutPacienteInput = {
 }
 
 export type PrescricaoCreateWithoutEnfermeiroInput = {
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -832,7 +888,9 @@ export type PrescricaoUncheckedCreateWithoutEnfermeiroInput = {
   id_admin: string
   id_paciente: number
   id_medicamento: number
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -867,7 +925,9 @@ export type PrescricaoUpdateManyWithWhereWithoutEnfermeiroInput = {
 }
 
 export type PrescricaoCreateWithoutMedicamentoInput = {
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -883,7 +943,9 @@ export type PrescricaoUncheckedCreateWithoutMedicamentoInput = {
   id_admin: string
   id_paciente: number
   id_enfermeiro: number
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -922,7 +984,9 @@ export type PrescricaoCreateManyAdminInput = {
   id_paciente: number
   id_enfermeiro: number
   id_medicamento: number
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -931,7 +995,9 @@ export type PrescricaoCreateManyAdminInput = {
 }
 
 export type PrescricaoUpdateWithoutAdminInput = {
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -947,7 +1013,9 @@ export type PrescricaoUncheckedUpdateWithoutAdminInput = {
   id_paciente?: Prisma.IntFieldUpdateOperationsInput | number
   id_enfermeiro?: Prisma.IntFieldUpdateOperationsInput | number
   id_medicamento?: Prisma.IntFieldUpdateOperationsInput | number
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -960,7 +1028,9 @@ export type PrescricaoUncheckedUpdateManyWithoutAdminInput = {
   id_paciente?: Prisma.IntFieldUpdateOperationsInput | number
   id_enfermeiro?: Prisma.IntFieldUpdateOperationsInput | number
   id_medicamento?: Prisma.IntFieldUpdateOperationsInput | number
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -973,7 +1043,9 @@ export type PrescricaoCreateManyPacienteInput = {
   id_admin: string
   id_enfermeiro: number
   id_medicamento: number
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -982,7 +1054,9 @@ export type PrescricaoCreateManyPacienteInput = {
 }
 
 export type PrescricaoUpdateWithoutPacienteInput = {
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -998,7 +1072,9 @@ export type PrescricaoUncheckedUpdateWithoutPacienteInput = {
   id_admin?: Prisma.StringFieldUpdateOperationsInput | string
   id_enfermeiro?: Prisma.IntFieldUpdateOperationsInput | number
   id_medicamento?: Prisma.IntFieldUpdateOperationsInput | number
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1011,7 +1087,9 @@ export type PrescricaoUncheckedUpdateManyWithoutPacienteInput = {
   id_admin?: Prisma.StringFieldUpdateOperationsInput | string
   id_enfermeiro?: Prisma.IntFieldUpdateOperationsInput | number
   id_medicamento?: Prisma.IntFieldUpdateOperationsInput | number
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1024,7 +1102,9 @@ export type PrescricaoCreateManyEnfermeiroInput = {
   id_admin: string
   id_paciente: number
   id_medicamento: number
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -1033,7 +1113,9 @@ export type PrescricaoCreateManyEnfermeiroInput = {
 }
 
 export type PrescricaoUpdateWithoutEnfermeiroInput = {
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1049,7 +1131,9 @@ export type PrescricaoUncheckedUpdateWithoutEnfermeiroInput = {
   id_admin?: Prisma.StringFieldUpdateOperationsInput | string
   id_paciente?: Prisma.IntFieldUpdateOperationsInput | number
   id_medicamento?: Prisma.IntFieldUpdateOperationsInput | number
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1062,7 +1146,9 @@ export type PrescricaoUncheckedUpdateManyWithoutEnfermeiroInput = {
   id_admin?: Prisma.StringFieldUpdateOperationsInput | string
   id_paciente?: Prisma.IntFieldUpdateOperationsInput | number
   id_medicamento?: Prisma.IntFieldUpdateOperationsInput | number
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1075,7 +1161,9 @@ export type PrescricaoCreateManyMedicamentoInput = {
   id_admin: string
   id_paciente: number
   id_enfermeiro: number
-  dosagem: number
+  dosagem: string
+  quantidade: number
+  unidade_medida: string
   turno: string
   data_hora: Date | string
   createdAt?: Date | string
@@ -1084,7 +1172,9 @@ export type PrescricaoCreateManyMedicamentoInput = {
 }
 
 export type PrescricaoUpdateWithoutMedicamentoInput = {
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1100,7 +1190,9 @@ export type PrescricaoUncheckedUpdateWithoutMedicamentoInput = {
   id_admin?: Prisma.StringFieldUpdateOperationsInput | string
   id_paciente?: Prisma.IntFieldUpdateOperationsInput | number
   id_enfermeiro?: Prisma.IntFieldUpdateOperationsInput | number
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1113,7 +1205,9 @@ export type PrescricaoUncheckedUpdateManyWithoutMedicamentoInput = {
   id_admin?: Prisma.StringFieldUpdateOperationsInput | string
   id_paciente?: Prisma.IntFieldUpdateOperationsInput | number
   id_enfermeiro?: Prisma.IntFieldUpdateOperationsInput | number
-  dosagem?: Prisma.FloatFieldUpdateOperationsInput | number
+  dosagem?: Prisma.StringFieldUpdateOperationsInput | string
+  quantidade?: Prisma.FloatFieldUpdateOperationsInput | number
+  unidade_medida?: Prisma.StringFieldUpdateOperationsInput | string
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1130,6 +1224,8 @@ export type PrescricaoSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   id_enfermeiro?: boolean
   id_medicamento?: boolean
   dosagem?: boolean
+  quantidade?: boolean
+  unidade_medida?: boolean
   turno?: boolean
   data_hora?: boolean
   createdAt?: boolean
@@ -1148,6 +1244,8 @@ export type PrescricaoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   id_enfermeiro?: boolean
   id_medicamento?: boolean
   dosagem?: boolean
+  quantidade?: boolean
+  unidade_medida?: boolean
   turno?: boolean
   data_hora?: boolean
   createdAt?: boolean
@@ -1166,6 +1264,8 @@ export type PrescricaoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   id_enfermeiro?: boolean
   id_medicamento?: boolean
   dosagem?: boolean
+  quantidade?: boolean
+  unidade_medida?: boolean
   turno?: boolean
   data_hora?: boolean
   createdAt?: boolean
@@ -1184,6 +1284,8 @@ export type PrescricaoSelectScalar = {
   id_enfermeiro?: boolean
   id_medicamento?: boolean
   dosagem?: boolean
+  quantidade?: boolean
+  unidade_medida?: boolean
   turno?: boolean
   data_hora?: boolean
   createdAt?: boolean
@@ -1191,7 +1293,7 @@ export type PrescricaoSelectScalar = {
   deletedAt?: boolean
 }
 
-export type PrescricaoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_admin" | "id_paciente" | "id_enfermeiro" | "id_medicamento" | "dosagem" | "turno" | "data_hora" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["prescricao"]>
+export type PrescricaoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_admin" | "id_paciente" | "id_enfermeiro" | "id_medicamento" | "dosagem" | "quantidade" | "unidade_medida" | "turno" | "data_hora" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["prescricao"]>
 export type PrescricaoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
@@ -1225,7 +1327,9 @@ export type $PrescricaoPayload<ExtArgs extends runtime.Types.Extensions.Internal
     id_paciente: number
     id_enfermeiro: number
     id_medicamento: number
-    dosagem: number
+    dosagem: string
+    quantidade: number
+    unidade_medida: string
     turno: string
     data_hora: Date
     createdAt: Date
@@ -1663,7 +1767,9 @@ export interface PrescricaoFieldRefs {
   readonly id_paciente: Prisma.FieldRef<"Prescricao", 'Int'>
   readonly id_enfermeiro: Prisma.FieldRef<"Prescricao", 'Int'>
   readonly id_medicamento: Prisma.FieldRef<"Prescricao", 'Int'>
-  readonly dosagem: Prisma.FieldRef<"Prescricao", 'Float'>
+  readonly dosagem: Prisma.FieldRef<"Prescricao", 'String'>
+  readonly quantidade: Prisma.FieldRef<"Prescricao", 'Float'>
+  readonly unidade_medida: Prisma.FieldRef<"Prescricao", 'String'>
   readonly turno: Prisma.FieldRef<"Prescricao", 'String'>
   readonly data_hora: Prisma.FieldRef<"Prescricao", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Prescricao", 'DateTime'>

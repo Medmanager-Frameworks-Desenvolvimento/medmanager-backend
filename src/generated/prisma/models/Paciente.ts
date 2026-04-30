@@ -268,6 +268,7 @@ export type PacienteOrderByWithRelationInput = {
 
 export type PacienteWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  cpf_id_admin?: Prisma.PacienteCpfId_adminCompoundUniqueInput
   AND?: Prisma.PacienteWhereInput | Prisma.PacienteWhereInput[]
   OR?: Prisma.PacienteWhereInput[]
   NOT?: Prisma.PacienteWhereInput | Prisma.PacienteWhereInput[]
@@ -281,7 +282,7 @@ export type PacienteWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"Paciente"> | Date | string | null
   admin?: Prisma.XOR<Prisma.AdminScalarRelationFilter, Prisma.AdminWhereInput>
   prescricoes?: Prisma.PrescricaoListRelationFilter
-}, "id">
+}, "id" | "cpf_id_admin">
 
 export type PacienteOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -415,6 +416,11 @@ export type StringNullableListFilter<$PrismaModel = never> = {
   hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
   hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
   isEmpty?: boolean
+}
+
+export type PacienteCpfId_adminCompoundUniqueInput = {
+  cpf: string
+  id_admin: string
 }
 
 export type PacienteCountOrderByAggregateInput = {

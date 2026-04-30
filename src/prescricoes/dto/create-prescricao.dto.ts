@@ -35,13 +35,33 @@ export class CreatePrescricaoDto {
   id_medicamento: number;
 
   @ApiProperty({ 
-    example: 1.5, 
-    description: 'Dosagem do medicamento (ex: mg, ml, comprimidos).' 
+    example: '100mg', 
+    description: 'Concentração do medicamento.' 
   })
-  @IsNumber({}, { message: 'A dosagem deve ser um número.' })
-  @Min(0.1, { message: 'A dosagem deve ser maior que zero.' })
+  @IsString({ message: 'A dosagem deve ser um texto válido (ex: 100mg, 50mg/ml).' })
   @IsNotEmpty({ message: 'A dosagem é obrigatória.' })
-  dosagem: number;
+  dosagem: string;
+
+  @ApiProperty({ 
+    example: 2, 
+    description: 'Quantidade numérica a ser administrada pelo enfermeiro.' 
+  })
+  @IsNumber({}, { message: 'A quantidade deve ser um número.' })
+  @Min(0.1, { message: 'A quantidade deve ser maior que zero.' })
+  @IsNotEmpty({ message: 'A quantidade é obrigatória.' })
+  quantidade: number;
+
+  @ApiProperty({ 
+    example: 'comprimido(s)', 
+    description: 'Unidade de medida ou formato de administração.',
+    enum: ['mg', 'ml', 'gotas', 'comprimido(s)', 'capsula(s)', 'ampola(s)'] 
+  })
+  @IsString({ message: 'A unidade de medida deve ser um texto.' })
+  @IsNotEmpty({ message: 'A unidade de medida é obrigatória.' })
+  @IsIn(['mg', 'ml', 'gotas', 'comprimido(s)', 'capsula(s)', 'ampola(s)'], { 
+    message: 'A unidade deve ser uma das opções padronizadas.' 
+  })
+  unidade_medida: string;
 
   @ApiProperty({ 
     example: 'NOITE', 

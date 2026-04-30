@@ -92,7 +92,9 @@ model Prescricao {
   id_paciente    Int
   id_enfermeiro  Int
   id_medicamento Int
-  dosagem        Float      
+  dosagem        String       
+  quantidade     Float        
+  unidade_medida String      
   turno          String       
   data_hora      DateTime     @db.Timestamp() 
   createdAt      DateTime     @default(now()) @db.Timestamptz(3)
