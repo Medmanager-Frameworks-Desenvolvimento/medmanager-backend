@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateEnfermeiroDto } from './dto/create-enfermeiro.dto';
 import { UpdateEnfermeiroDto } from './dto/update-enfermeiro.dto';
 import { PrismaService } from 'src/database/prisma.service';
@@ -9,11 +9,31 @@ export class EnfermeirosService {
   constructor(private prisma: PrismaService) {}
 
   async create(idAdmin: string, data: CreateEnfermeiroDto) {
+    const enfermeiroExistente = await this.prisma.enfermeiro.findFirst({
+      where: {
+        id_admin: idAdmin,
+        deletedAt: null,
+        OR: [
+          { cpf: data.cpf },
+          { email: data.email },
+        ],
+      },
+    });
+
+    if (enfermeiroExistente) {
+      if (enfermeiroExistente.cpf === data.cpf) {
+        throw new ConflictException('Você já possui um enfermeiro cadastrado com este CPF.');
+      }
+      if (enfermeiroExistente.email === data.email) {
+        throw new ConflictException('Este endereço de e-mail já está sendo usado por outro enfermeiro.');
+      }
+    }
+
     return await this.prisma.enfermeiro.create({
       data: {
         ...data,
-        id_admin: idAdmin
-      }
+        id_admin: idAdmin,
+      },
     });
   }
 

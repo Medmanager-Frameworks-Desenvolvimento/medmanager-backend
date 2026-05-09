@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreatePacienteDto } from './dto/create-paciente.dto';
 import { UpdatePacienteDto } from './dto/update-paciente.dto';
 import { PrismaService } from 'src/database/prisma.service';
@@ -9,11 +9,23 @@ export class PacientesService {
   constructor(private prisma: PrismaService) {}
   
   async create(idAdmin: string, data: CreatePacienteDto) {
+    const pacienteExistente = await this.prisma.paciente.findFirst({
+      where: {
+        cpf: data.cpf,
+        id_admin: idAdmin,
+        deletedAt: null, 
+      },
+    });
+
+    if (pacienteExistente) {
+      throw new ConflictException('Você já possui um paciente cadastrado com este CPF.');
+    }
+
     return await this.prisma.paciente.create({
       data: {
         ...data,
-        id_admin: idAdmin, 
-        doenca_cronica: data.doenca_cronica || [], 
+        id_admin: idAdmin,
+        doenca_cronica: data.doenca_cronica || [],
       },
     });
   }

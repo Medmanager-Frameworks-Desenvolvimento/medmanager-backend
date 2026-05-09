@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma.service';
 import { Admin, Prisma } from 'src/generated/prisma/client';
 import { CreateAdminDto } from './dto/create-admin.dto';
@@ -18,10 +18,21 @@ export class AdminService {
     }
 
     async create(createAdminDto: CreateAdminDto) {
+        const emailJaEmUso = await this.prisma.admin.findUnique({
+        where: { email: createAdminDto.email },
+        });
+
+        if (emailJaEmUso) {
+        throw new ConflictException('Este e-mail já está cadastrado no sistema.');
+        }
+        
         const hashPassword = await bcrypt.hash(createAdminDto.senha, 12);
-        const newAdmin = createAdminDto
+        
         return await this.prisma.admin.create({
-            data: {...newAdmin, senha: hashPassword }
+        data: { 
+            ...createAdminDto, 
+            senha: hashPassword 
+        }
         });
     }
     
