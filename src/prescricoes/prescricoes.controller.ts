@@ -22,6 +22,12 @@ export class PrescricoesController {
     return this.prescricoesService.create(admin.sub, createPrescricaoDto);
   }
 
+  @Get('resumo')
+  @HttpCode(HttpStatus.OK)
+  async obterResumo(@CurrentAdmin() admin: { sub: string }) {
+    return this.prescricoesService.totalData(admin.sub);
+  }
+
   @Get()
   @HttpCode(HttpStatus.OK) 
   async findAll(@CurrentAdmin() admin: { sub: string }) {

@@ -49,6 +49,72 @@ export class PrescricoesService {
     });
   }
 
+  async totalData(idAdmin: string) {
+    const [
+      pacientes, 
+      medicamentos, 
+      pacientesNaoMedicados, 
+      prescricoesAgrupadas, 
+      pacientesComDoencas
+    ] = await Promise.all([
+
+      this.prisma.paciente.count({
+        where: { id_admin: idAdmin, deletedAt: null },
+      }),
+
+      this.prisma.medicamento.count({
+        where: { id_admin: idAdmin, deletedAt: null },
+      }),
+
+      this.prisma.paciente.count({
+        where: {
+          id_admin: idAdmin,
+          deletedAt: null,
+          prescricoes: { none: { deletedAt: null } },
+        },
+      }),
+
+      this.prisma.prescricao.groupBy({
+        by: ['turno'],
+        where: { id_admin: idAdmin, deletedAt: null },
+        _count: { turno: true },
+      }),
+
+      this.prisma.paciente.findMany({
+        where: { id_admin: idAdmin, deletedAt: null },
+        select: { doenca_cronica: true },
+      })
+    ]);
+
+    const turnosFormatados = { 'Manhã': 0, 'Tarde': 0, 'Noite': 0 };
+    prescricoesAgrupadas.forEach(p => {
+      turnosFormatados[p.turno] = p._count.turno;
+    });
+
+    const doencasMap: Record<string, number> = {};
+    pacientesComDoencas.forEach(p => {
+      if (p.doenca_cronica && p.doenca_cronica.length > 0) {
+        p.doenca_cronica.forEach(doenca => {
+          doencasMap[doenca] = (doencasMap[doenca] || 0) + 1;
+        });
+      }
+    });
+
+    return { 
+      pacientes, 
+      medicamentos, 
+      pacientesNaoMedicados,
+      graficoTurnos: {
+        labels: Object.keys(turnosFormatados),
+        series: Object.values(turnosFormatados)
+      },
+      graficoDoencas: {
+        labels: Object.keys(doencasMap),
+        series: Object.values(doencasMap)
+      }
+    };
+  }
+
   async findAll(idAdmin: string) {
     return await this.prisma.prescricao.findMany({
       where: {
