@@ -37,7 +37,32 @@ export class AdminService {
     }
     
     async update(id: string, data: UpdateAdminDto): Promise<Admin> {
-        return this.prisma.admin.update({
+        const admin = await this.prisma.admin.findUnique({
+            where: { id },
+        });
+
+        if (!admin) {
+            throw new NotFoundException('Administrador não encontrado.');
+        }
+
+        if (data.email) {
+            const emailJaEmUso = await this.prisma.admin.findFirst({
+                where: {
+                email: data.email,
+                id: { not: id },
+                },
+            });
+
+        if (emailJaEmUso) {
+                throw new ConflictException('Este e-mail já está sendo usado por outro administrador.');
+            }
+        }
+
+        if (data.senha) {
+            data.senha = await bcrypt.hash(data.senha, 12);
+        }
+
+        return await this.prisma.admin.update({
             where: { id },
             data
         });

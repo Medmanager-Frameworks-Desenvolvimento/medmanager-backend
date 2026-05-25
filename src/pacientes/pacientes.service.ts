@@ -62,8 +62,23 @@ export class PacientesService {
       throw new NotFoundException('Paciente não encontrado ou acesso negado.');
     }
 
+    if (updatePacienteDto.cpf) {
+      const pacienteExistente = await this.prisma.paciente.findFirst({
+        where: {
+          cpf: updatePacienteDto.cpf,
+          id_admin: idAdmin,
+          deletedAt: null,
+          id: { not: id }, 
+        },
+      });
+
+      if (pacienteExistente) {
+        throw new ConflictException('Você já possui outro paciente cadastrado com este CPF.');
+      }
+    }
+
     return await this.prisma.paciente.update({
-      where: { id: id },
+      where: { id },
       data: updatePacienteDto,
     });
   }

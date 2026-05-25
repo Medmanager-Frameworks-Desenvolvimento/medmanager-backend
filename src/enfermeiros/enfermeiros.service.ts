@@ -59,18 +59,46 @@ export class EnfermeirosService {
   async update(idAdmin: string, id: number, updateEnfermeiroDto: UpdateEnfermeiroDto) {
     const enfermeiro = await this.prisma.enfermeiro.findFirst({
       where: {
-        id: id,
+        id,
         id_admin: idAdmin,
-        deletedAt: null
-      }
+        deletedAt: null,
+      },
     });
 
     if (!enfermeiro) {
       throw new NotFoundException('Enfermeiro não encontrado ou acesso negado.');
     }
 
+    const orConditions = [];
+    if (updateEnfermeiroDto.cpf) {
+      orConditions.push({ cpf: updateEnfermeiroDto.cpf });
+    }
+    if (updateEnfermeiroDto.email) {
+      orConditions.push({ email: updateEnfermeiroDto.email });
+    }
+
+    if (orConditions.length > 0) {
+      const enfermeiroExistente = await this.prisma.enfermeiro.findFirst({
+        where: {
+          id_admin: idAdmin,
+          deletedAt: null,
+          id: { not: id }, 
+          OR: orConditions,
+        },
+      });
+
+      if (enfermeiroExistente) {
+        if (enfermeiroExistente.cpf === updateEnfermeiroDto.cpf) {
+          throw new ConflictException('Você já possui outro enfermeiro cadastrado com este CPF.');
+        }
+        if (enfermeiroExistente.email === updateEnfermeiroDto.email) {
+          throw new ConflictException('Este endereço de e-mail já está sendo usado por outro enfermeiro.');
+        }
+      }
+    }
+
     return await this.prisma.enfermeiro.update({
-      where: { id: id},
+      where: { id },
       data: updateEnfermeiroDto,
     });
   }
