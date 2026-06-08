@@ -87,20 +87,21 @@ model Medicamento {
 }
 
 model Prescricao {
-  id             Int          @id @default(autoincrement())
-  id_admin       String       
-  id_paciente    Int
-  id_enfermeiro  Int
-  id_medicamento Int
-  dosagem        String       
-  quantidade     Float        
-  unidade_medida String      
-  turno          String       
-  data_hora      DateTime     @db.Timestamp() 
-  tomou_medicacao Boolean     @default(false) 
-  createdAt      DateTime     @default(now()) @db.Timestamptz(3)
-  updatedAt      DateTime     @updatedAt @db.Timestamptz(3)
-  deletedAt      DateTime?
+  id                Int        @id @default(autoincrement())
+  id_admin          String       
+  id_paciente       Int
+  id_enfermeiro     Int
+  id_medicamento    Int
+  dosagem           String       
+  quantidade        Float        
+  unidade_medida    String      
+  turno             String       
+  data_hora         DateTime    @db.Timestamp() 
+  tomou_medicacao   Boolean     @default(false) 
+  notificado_atraso Boolean     @default(false)
+  createdAt         DateTime    @default(now()) @db.Timestamptz(3)
+  updatedAt         DateTime    @updatedAt @db.Timestamptz(3)
+  deletedAt         DateTime?
 
   admin          Admin        @relation(fields: [id_admin], references: [id])
   paciente       Paciente     @relation(fields: [id_paciente], references: [id])

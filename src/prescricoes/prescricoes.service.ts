@@ -3,14 +3,81 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { CreatePrescricaoDto } from './dto/create-prescricao.dto';
 import { UpdatePrescricaoDto } from './dto/update-prescricao.dto';
 import { PrismaService } from 'src/database/prisma.service';
+import { NotificationsGateway } from './notifications.gateway';
 
 @Injectable()
 export class PrescricoesService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly notificationsGateway: NotificationsGateway
+  ) {}
+
+  @Cron(CronExpression.EVERY_MINUTE, {
+      timeZone: 'America/Sao_Paulo',
+  })
+
+  async verificarEVerificarMedicacoesAtrasadas() {
+    const agora = new Date();
+
+    try {
+      const prescricoesAtrasadas = await this.prisma.prescricao.findMany({
+        where: {
+          deletedAt: null,
+          tomou_medicacao: false,
+          notificado_atraso: false,
+          data_hora: {
+            lt: agora, 
+          },
+        },
+        include: {
+          paciente: { select: { nome: true } },
+          medicamento: { select: { nome: true } },
+        },
+      });
+
+      for (const prescricao of prescricoesAtrasadas) {
+        this.notificationsGateway.enviarAlertaAtraso(prescricao.id_admin, {
+          idPrescricao: prescricao.id,
+          paciente: prescricao.paciente.nome,
+          medicamento: prescricao.medicamento.nome,
+          horarioPlanejado: prescricao.data_hora,
+          turno: prescricao.turno,
+        });
+
+        await this.prisma.prescricao.update({
+          where: { id: prescricao.id },
+          data: { notificado_atraso: true },
+        });
+      }
+    } catch (error) {
+      console.error('Erro na verificação de medicações atrasadas:', error);
+    }
+  }
 
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT, {
-      timeZone: 'America/Sao_Paulo', 
-    })
+    timeZone: 'America/Sao_Paulo',
+  })
+  
+  async resetarStatusMedicacaoDiario() {
+    try {
+      await this.prisma.prescricao.updateMany({
+        where: { 
+          deletedAt: null,
+          OR: [
+            { tomou_medicacao: true },
+            { notificado_atraso: true }
+          ]
+        },
+        data: { 
+          tomou_medicacao: false,
+          notificado_atraso: false 
+        },
+      });
+      console.log('Status de medicação e notificações diárias resetados.');
+    } catch (error) {
+      console.error('Erro ao resetar o status diário:', error);
+    }
+  }
 
   async create(idAdmin: string, data: CreatePrescricaoDto) {
     const medicamento = await this.prisma.medicamento.findFirst({
@@ -118,22 +185,6 @@ export class PrescricoesService {
         series: Object.values(doencasMap)
       }
     };
-  }
-async resetarStatusMedicacaoDiario() {
-    try {
-      await this.prisma.prescricao.updateMany({
-        where: { 
-          deletedAt: null,
-          tomou_medicacao: true 
-        },
-        data: { 
-          tomou_medicacao: false 
-        },
-      });
-      console.log('Status de medicação resetado para o novo dia.');
-    } catch (error) {
-      console.error('Erro ao resetar o status diário das medicações:', error);
-    }
   }
 
   async findAll(idAdmin: string) {

@@ -54,6 +54,7 @@ export type PrescricaoMinAggregateOutputType = {
   turno: string | null
   data_hora: Date | null
   tomou_medicacao: boolean | null
+  notificado_atraso: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -71,6 +72,7 @@ export type PrescricaoMaxAggregateOutputType = {
   turno: string | null
   data_hora: Date | null
   tomou_medicacao: boolean | null
+  notificado_atraso: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -88,6 +90,7 @@ export type PrescricaoCountAggregateOutputType = {
   turno: number
   data_hora: number
   tomou_medicacao: number
+  notificado_atraso: number
   createdAt: number
   updatedAt: number
   deletedAt: number
@@ -123,6 +126,7 @@ export type PrescricaoMinAggregateInputType = {
   turno?: true
   data_hora?: true
   tomou_medicacao?: true
+  notificado_atraso?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -140,6 +144,7 @@ export type PrescricaoMaxAggregateInputType = {
   turno?: true
   data_hora?: true
   tomou_medicacao?: true
+  notificado_atraso?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -157,6 +162,7 @@ export type PrescricaoCountAggregateInputType = {
   turno?: true
   data_hora?: true
   tomou_medicacao?: true
+  notificado_atraso?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -261,6 +267,7 @@ export type PrescricaoGroupByOutputType = {
   turno: string
   data_hora: Date
   tomou_medicacao: boolean
+  notificado_atraso: boolean
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
@@ -301,6 +308,7 @@ export type PrescricaoWhereInput = {
   turno?: Prisma.StringFilter<"Prescricao"> | string
   data_hora?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
   tomou_medicacao?: Prisma.BoolFilter<"Prescricao"> | boolean
+  notificado_atraso?: Prisma.BoolFilter<"Prescricao"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Prescricao"> | Date | string | null
@@ -322,6 +330,7 @@ export type PrescricaoOrderByWithRelationInput = {
   turno?: Prisma.SortOrder
   data_hora?: Prisma.SortOrder
   tomou_medicacao?: Prisma.SortOrder
+  notificado_atraso?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -346,6 +355,7 @@ export type PrescricaoWhereUniqueInput = Prisma.AtLeast<{
   turno?: Prisma.StringFilter<"Prescricao"> | string
   data_hora?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
   tomou_medicacao?: Prisma.BoolFilter<"Prescricao"> | boolean
+  notificado_atraso?: Prisma.BoolFilter<"Prescricao"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Prescricao"> | Date | string | null
@@ -367,6 +377,7 @@ export type PrescricaoOrderByWithAggregationInput = {
   turno?: Prisma.SortOrder
   data_hora?: Prisma.SortOrder
   tomou_medicacao?: Prisma.SortOrder
+  notificado_atraso?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -392,6 +403,7 @@ export type PrescricaoScalarWhereWithAggregatesInput = {
   turno?: Prisma.StringWithAggregatesFilter<"Prescricao"> | string
   data_hora?: Prisma.DateTimeWithAggregatesFilter<"Prescricao"> | Date | string
   tomou_medicacao?: Prisma.BoolWithAggregatesFilter<"Prescricao"> | boolean
+  notificado_atraso?: Prisma.BoolWithAggregatesFilter<"Prescricao"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Prescricao"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Prescricao"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Prescricao"> | Date | string | null
@@ -404,6 +416,7 @@ export type PrescricaoCreateInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -425,6 +438,7 @@ export type PrescricaoUncheckedCreateInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -437,6 +451,7 @@ export type PrescricaoUpdateInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -458,6 +473,7 @@ export type PrescricaoUncheckedUpdateInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -475,6 +491,7 @@ export type PrescricaoCreateManyInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -487,6 +504,7 @@ export type PrescricaoUpdateManyMutationInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -504,6 +522,7 @@ export type PrescricaoUncheckedUpdateManyInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -531,6 +550,7 @@ export type PrescricaoCountOrderByAggregateInput = {
   turno?: Prisma.SortOrder
   data_hora?: Prisma.SortOrder
   tomou_medicacao?: Prisma.SortOrder
+  notificado_atraso?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -556,6 +576,7 @@ export type PrescricaoMaxOrderByAggregateInput = {
   turno?: Prisma.SortOrder
   data_hora?: Prisma.SortOrder
   tomou_medicacao?: Prisma.SortOrder
+  notificado_atraso?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -573,6 +594,7 @@ export type PrescricaoMinOrderByAggregateInput = {
   turno?: Prisma.SortOrder
   data_hora?: Prisma.SortOrder
   tomou_medicacao?: Prisma.SortOrder
+  notificado_atraso?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -773,6 +795,7 @@ export type PrescricaoCreateWithoutAdminInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -792,6 +815,7 @@ export type PrescricaoUncheckedCreateWithoutAdminInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -838,6 +862,7 @@ export type PrescricaoScalarWhereInput = {
   turno?: Prisma.StringFilter<"Prescricao"> | string
   data_hora?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
   tomou_medicacao?: Prisma.BoolFilter<"Prescricao"> | boolean
+  notificado_atraso?: Prisma.BoolFilter<"Prescricao"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Prescricao"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Prescricao"> | Date | string | null
@@ -850,6 +875,7 @@ export type PrescricaoCreateWithoutPacienteInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -869,6 +895,7 @@ export type PrescricaoUncheckedCreateWithoutPacienteInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -907,6 +934,7 @@ export type PrescricaoCreateWithoutEnfermeiroInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -926,6 +954,7 @@ export type PrescricaoUncheckedCreateWithoutEnfermeiroInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -964,6 +993,7 @@ export type PrescricaoCreateWithoutMedicamentoInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -983,6 +1013,7 @@ export type PrescricaoUncheckedCreateWithoutMedicamentoInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1025,6 +1056,7 @@ export type PrescricaoCreateManyAdminInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1037,6 +1069,7 @@ export type PrescricaoUpdateWithoutAdminInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1056,6 +1089,7 @@ export type PrescricaoUncheckedUpdateWithoutAdminInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1072,6 +1106,7 @@ export type PrescricaoUncheckedUpdateManyWithoutAdminInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1088,6 +1123,7 @@ export type PrescricaoCreateManyPacienteInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1100,6 +1136,7 @@ export type PrescricaoUpdateWithoutPacienteInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1119,6 +1156,7 @@ export type PrescricaoUncheckedUpdateWithoutPacienteInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1135,6 +1173,7 @@ export type PrescricaoUncheckedUpdateManyWithoutPacienteInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1151,6 +1190,7 @@ export type PrescricaoCreateManyEnfermeiroInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1163,6 +1203,7 @@ export type PrescricaoUpdateWithoutEnfermeiroInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1182,6 +1223,7 @@ export type PrescricaoUncheckedUpdateWithoutEnfermeiroInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1198,6 +1240,7 @@ export type PrescricaoUncheckedUpdateManyWithoutEnfermeiroInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1214,6 +1257,7 @@ export type PrescricaoCreateManyMedicamentoInput = {
   turno: string
   data_hora: Date | string
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1226,6 +1270,7 @@ export type PrescricaoUpdateWithoutMedicamentoInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1245,6 +1290,7 @@ export type PrescricaoUncheckedUpdateWithoutMedicamentoInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1261,6 +1307,7 @@ export type PrescricaoUncheckedUpdateManyWithoutMedicamentoInput = {
   turno?: Prisma.StringFieldUpdateOperationsInput | string
   data_hora?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tomou_medicacao?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notificado_atraso?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1280,6 +1327,7 @@ export type PrescricaoSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   turno?: boolean
   data_hora?: boolean
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -1301,6 +1349,7 @@ export type PrescricaoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   turno?: boolean
   data_hora?: boolean
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -1322,6 +1371,7 @@ export type PrescricaoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   turno?: boolean
   data_hora?: boolean
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -1343,12 +1393,13 @@ export type PrescricaoSelectScalar = {
   turno?: boolean
   data_hora?: boolean
   tomou_medicacao?: boolean
+  notificado_atraso?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type PrescricaoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_admin" | "id_paciente" | "id_enfermeiro" | "id_medicamento" | "dosagem" | "quantidade" | "unidade_medida" | "turno" | "data_hora" | "tomou_medicacao" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["prescricao"]>
+export type PrescricaoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_admin" | "id_paciente" | "id_enfermeiro" | "id_medicamento" | "dosagem" | "quantidade" | "unidade_medida" | "turno" | "data_hora" | "tomou_medicacao" | "notificado_atraso" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["prescricao"]>
 export type PrescricaoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   admin?: boolean | Prisma.AdminDefaultArgs<ExtArgs>
   paciente?: boolean | Prisma.PacienteDefaultArgs<ExtArgs>
@@ -1388,6 +1439,7 @@ export type $PrescricaoPayload<ExtArgs extends runtime.Types.Extensions.Internal
     turno: string
     data_hora: Date
     tomou_medicacao: boolean
+    notificado_atraso: boolean
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -1829,6 +1881,7 @@ export interface PrescricaoFieldRefs {
   readonly turno: Prisma.FieldRef<"Prescricao", 'String'>
   readonly data_hora: Prisma.FieldRef<"Prescricao", 'DateTime'>
   readonly tomou_medicacao: Prisma.FieldRef<"Prescricao", 'Boolean'>
+  readonly notificado_atraso: Prisma.FieldRef<"Prescricao", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Prescricao", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Prescricao", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Prescricao", 'DateTime'>

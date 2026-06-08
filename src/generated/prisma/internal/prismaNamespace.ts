@@ -962,6 +962,7 @@ export const PrescricaoScalarFieldEnum = {
   turno: 'turno',
   data_hora: 'data_hora',
   tomou_medicacao: 'tomou_medicacao',
+  notificado_atraso: 'notificado_atraso',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
