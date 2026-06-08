@@ -144,6 +144,7 @@ export const PrescricaoScalarFieldEnum = {
   unidade_medida: 'unidade_medida',
   turno: 'turno',
   data_hora: 'data_hora',
+  tomou_medicacao: 'tomou_medicacao',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'

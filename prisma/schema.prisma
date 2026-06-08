@@ -97,6 +97,7 @@ model Prescricao {
   unidade_medida String      
   turno          String       
   data_hora      DateTime     @db.Timestamp() 
+  tomou_medicacao Boolean     @default(false) 
   createdAt      DateTime     @default(now()) @db.Timestamptz(3)
   updatedAt      DateTime     @updatedAt @db.Timestamptz(3)
   deletedAt      DateTime?

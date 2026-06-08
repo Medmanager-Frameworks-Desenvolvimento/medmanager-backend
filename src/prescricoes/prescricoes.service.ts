@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { CreatePrescricaoDto } from './dto/create-prescricao.dto';
 import { UpdatePrescricaoDto } from './dto/update-prescricao.dto';
 import { PrismaService } from 'src/database/prisma.service';
@@ -6,6 +7,10 @@ import { PrismaService } from 'src/database/prisma.service';
 @Injectable()
 export class PrescricoesService {
   constructor(private readonly prisma: PrismaService) {}
+
+  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT, {
+      timeZone: 'America/Sao_Paulo', 
+    })
 
   async create(idAdmin: string, data: CreatePrescricaoDto) {
     const medicamento = await this.prisma.medicamento.findFirst({
@@ -114,6 +119,22 @@ export class PrescricoesService {
       }
     };
   }
+async resetarStatusMedicacaoDiario() {
+    try {
+      await this.prisma.prescricao.updateMany({
+        where: { 
+          deletedAt: null,
+          tomou_medicacao: true 
+        },
+        data: { 
+          tomou_medicacao: false 
+        },
+      });
+      console.log('Status de medicação resetado para o novo dia.');
+    } catch (error) {
+      console.error('Erro ao resetar o status diário das medicações:', error);
+    }
+  }
 
   async findAll(idAdmin: string) {
     return await this.prisma.prescricao.findMany({
@@ -169,7 +190,10 @@ export class PrescricoesService {
     const dataHoraConvertida = data.data_hora ? new Date(data.data_hora) : undefined;
 
     return await this.prisma.prescricao.update({
-      where: { id: id },
+      where: { 
+        id: id,
+        id_admin: idAdmin 
+      }, 
       data: {
         ...data,
         data_hora: dataHoraConvertida,
