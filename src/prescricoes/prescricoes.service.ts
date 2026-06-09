@@ -55,9 +55,9 @@ export class PrescricoesService {
   }
 
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT, {
-    timeZone: 'America/Sao_Paulo',
+      timeZone: 'America/Sao_Paulo',
   })
-  
+
   async resetarStatusMedicacaoDiario() {
     try {
       await this.prisma.prescricao.updateMany({
@@ -73,7 +73,6 @@ export class PrescricoesService {
           notificado_atraso: false 
         },
       });
-      console.log('Status de medicação e notificações diárias resetados.');
     } catch (error) {
       console.error('Erro ao resetar o status diário:', error);
     }
@@ -121,7 +120,7 @@ export class PrescricoesService {
     });
   }
 
-  async totalData(idAdmin: string) {
+async totalData(idAdmin: string) {
     const [
       pacientes, 
       medicamentos, 
@@ -142,7 +141,12 @@ export class PrescricoesService {
         where: {
           id_admin: idAdmin,
           deletedAt: null,
-          prescricoes: { none: { deletedAt: null } },
+          prescricoes: { 
+            some: { 
+              deletedAt: null,
+              tomou_medicacao: false 
+            } 
+          },
         },
       }),
 
