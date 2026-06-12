@@ -26,6 +26,7 @@ model Admin {
   enfermeiros  Enfermeiro[]
   medicamentos Medicamento[]
   prescricoes  Prescricao[]
+  notificacaos Notificacao[]
 
   @@map("admin") 
 }
@@ -70,24 +71,24 @@ model Enfermeiro {
 }
 
 model Medicamento {
-  id             Int          @id @default(autoincrement())
-  id_admin       String       
-  nome           String       
-  descricao      String       
-  quantidade     Int
-  validade       DateTime     @db.Date
-  createdAt      DateTime     @default(now()) @db.Timestamptz(3)
-  updatedAt      DateTime     @updatedAt @db.Timestamptz(3)
-  deletedAt      DateTime? 
+  id            Int          @id @default(autoincrement())
+  id_admin      String       
+  nome          String       
+  descricao     String       
+  quantidade    Int
+  validade      DateTime     @db.Date
+  createdAt     DateTime     @default(now()) @db.Timestamptz(3)
+  updatedAt     DateTime     @updatedAt @db.Timestamptz(3)
+  deletedAt     DateTime? 
   
-  admin          Admin        @relation(fields: [id_admin], references: [id])
-  prescricoes    Prescricao[]
+  admin         Admin        @relation(fields: [id_admin], references: [id])
+  prescricoes   Prescricao[]
 
   @@map("medicamentos")
 }
 
 model Prescricao {
-  id                Int        @id @default(autoincrement())
+  id                Int         @id @default(autoincrement())
   id_admin          String       
   id_paciente       Int
   id_enfermeiro     Int
@@ -96,7 +97,7 @@ model Prescricao {
   quantidade        Float        
   unidade_medida    String      
   turno             String       
-  data_hora         DateTime    @db.Timestamp() 
+  data_hora         DateTime    @db.Timestamptz(3) 
   tomou_medicacao   Boolean     @default(false) 
   notificado_atraso Boolean     @default(false)
   createdAt         DateTime    @default(now()) @db.Timestamptz(3)
@@ -109,6 +110,20 @@ model Prescricao {
   medicamento    Medicamento  @relation(fields: [id_medicamento], references: [id])
 
   @@map("prescricoes")
+}
+
+model Notificacao {
+  id          Int      @id @default(autoincrement())
+  id_admin    String
+  titulo      String
+  mensagem    String
+  lida        Boolean  @default(false)
+  tipo        String  
+  createdAt   DateTime @default(now()) @db.Timestamptz(3)
+
+  admin       Admin    @relation(fields: [id_admin], references: [id])
+  
+  @@map("notificacoes")
 }
 
 model CatalogoMedicamento {

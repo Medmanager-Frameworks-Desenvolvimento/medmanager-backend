@@ -202,6 +202,7 @@ export type AdminWhereInput = {
   enfermeiros?: Prisma.EnfermeiroListRelationFilter
   medicamentos?: Prisma.MedicamentoListRelationFilter
   prescricoes?: Prisma.PrescricaoListRelationFilter
+  notificacaos?: Prisma.NotificacaoListRelationFilter
 }
 
 export type AdminOrderByWithRelationInput = {
@@ -216,6 +217,7 @@ export type AdminOrderByWithRelationInput = {
   enfermeiros?: Prisma.EnfermeiroOrderByRelationAggregateInput
   medicamentos?: Prisma.MedicamentoOrderByRelationAggregateInput
   prescricoes?: Prisma.PrescricaoOrderByRelationAggregateInput
+  notificacaos?: Prisma.NotificacaoOrderByRelationAggregateInput
 }
 
 export type AdminWhereUniqueInput = Prisma.AtLeast<{
@@ -233,6 +235,7 @@ export type AdminWhereUniqueInput = Prisma.AtLeast<{
   enfermeiros?: Prisma.EnfermeiroListRelationFilter
   medicamentos?: Prisma.MedicamentoListRelationFilter
   prescricoes?: Prisma.PrescricaoListRelationFilter
+  notificacaos?: Prisma.NotificacaoListRelationFilter
 }, "id" | "email">
 
 export type AdminOrderByWithAggregationInput = {
@@ -273,6 +276,7 @@ export type AdminCreateInput = {
   enfermeiros?: Prisma.EnfermeiroCreateNestedManyWithoutAdminInput
   medicamentos?: Prisma.MedicamentoCreateNestedManyWithoutAdminInput
   prescricoes?: Prisma.PrescricaoCreateNestedManyWithoutAdminInput
+  notificacaos?: Prisma.NotificacaoCreateNestedManyWithoutAdminInput
 }
 
 export type AdminUncheckedCreateInput = {
@@ -287,6 +291,7 @@ export type AdminUncheckedCreateInput = {
   enfermeiros?: Prisma.EnfermeiroUncheckedCreateNestedManyWithoutAdminInput
   medicamentos?: Prisma.MedicamentoUncheckedCreateNestedManyWithoutAdminInput
   prescricoes?: Prisma.PrescricaoUncheckedCreateNestedManyWithoutAdminInput
+  notificacaos?: Prisma.NotificacaoUncheckedCreateNestedManyWithoutAdminInput
 }
 
 export type AdminUpdateInput = {
@@ -301,6 +306,7 @@ export type AdminUpdateInput = {
   enfermeiros?: Prisma.EnfermeiroUpdateManyWithoutAdminNestedInput
   medicamentos?: Prisma.MedicamentoUpdateManyWithoutAdminNestedInput
   prescricoes?: Prisma.PrescricaoUpdateManyWithoutAdminNestedInput
+  notificacaos?: Prisma.NotificacaoUpdateManyWithoutAdminNestedInput
 }
 
 export type AdminUncheckedUpdateInput = {
@@ -315,6 +321,7 @@ export type AdminUncheckedUpdateInput = {
   enfermeiros?: Prisma.EnfermeiroUncheckedUpdateManyWithoutAdminNestedInput
   medicamentos?: Prisma.MedicamentoUncheckedUpdateManyWithoutAdminNestedInput
   prescricoes?: Prisma.PrescricaoUncheckedUpdateManyWithoutAdminNestedInput
+  notificacaos?: Prisma.NotificacaoUncheckedUpdateManyWithoutAdminNestedInput
 }
 
 export type AdminCreateManyInput = {
@@ -450,6 +457,20 @@ export type AdminUpdateOneRequiredWithoutPrescricoesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AdminUpdateToOneWithWhereWithoutPrescricoesInput, Prisma.AdminUpdateWithoutPrescricoesInput>, Prisma.AdminUncheckedUpdateWithoutPrescricoesInput>
 }
 
+export type AdminCreateNestedOneWithoutNotificacaosInput = {
+  create?: Prisma.XOR<Prisma.AdminCreateWithoutNotificacaosInput, Prisma.AdminUncheckedCreateWithoutNotificacaosInput>
+  connectOrCreate?: Prisma.AdminCreateOrConnectWithoutNotificacaosInput
+  connect?: Prisma.AdminWhereUniqueInput
+}
+
+export type AdminUpdateOneRequiredWithoutNotificacaosNestedInput = {
+  create?: Prisma.XOR<Prisma.AdminCreateWithoutNotificacaosInput, Prisma.AdminUncheckedCreateWithoutNotificacaosInput>
+  connectOrCreate?: Prisma.AdminCreateOrConnectWithoutNotificacaosInput
+  upsert?: Prisma.AdminUpsertWithoutNotificacaosInput
+  connect?: Prisma.AdminWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AdminUpdateToOneWithWhereWithoutNotificacaosInput, Prisma.AdminUpdateWithoutNotificacaosInput>, Prisma.AdminUncheckedUpdateWithoutNotificacaosInput>
+}
+
 export type AdminCreateWithoutPacientesInput = {
   id?: string
   nome: string
@@ -461,6 +482,7 @@ export type AdminCreateWithoutPacientesInput = {
   enfermeiros?: Prisma.EnfermeiroCreateNestedManyWithoutAdminInput
   medicamentos?: Prisma.MedicamentoCreateNestedManyWithoutAdminInput
   prescricoes?: Prisma.PrescricaoCreateNestedManyWithoutAdminInput
+  notificacaos?: Prisma.NotificacaoCreateNestedManyWithoutAdminInput
 }
 
 export type AdminUncheckedCreateWithoutPacientesInput = {
@@ -474,6 +496,7 @@ export type AdminUncheckedCreateWithoutPacientesInput = {
   enfermeiros?: Prisma.EnfermeiroUncheckedCreateNestedManyWithoutAdminInput
   medicamentos?: Prisma.MedicamentoUncheckedCreateNestedManyWithoutAdminInput
   prescricoes?: Prisma.PrescricaoUncheckedCreateNestedManyWithoutAdminInput
+  notificacaos?: Prisma.NotificacaoUncheckedCreateNestedManyWithoutAdminInput
 }
 
 export type AdminCreateOrConnectWithoutPacientesInput = {
@@ -503,6 +526,7 @@ export type AdminUpdateWithoutPacientesInput = {
   enfermeiros?: Prisma.EnfermeiroUpdateManyWithoutAdminNestedInput
   medicamentos?: Prisma.MedicamentoUpdateManyWithoutAdminNestedInput
   prescricoes?: Prisma.PrescricaoUpdateManyWithoutAdminNestedInput
+  notificacaos?: Prisma.NotificacaoUpdateManyWithoutAdminNestedInput
 }
 
 export type AdminUncheckedUpdateWithoutPacientesInput = {
@@ -516,6 +540,7 @@ export type AdminUncheckedUpdateWithoutPacientesInput = {
   enfermeiros?: Prisma.EnfermeiroUncheckedUpdateManyWithoutAdminNestedInput
   medicamentos?: Prisma.MedicamentoUncheckedUpdateManyWithoutAdminNestedInput
   prescricoes?: Prisma.PrescricaoUncheckedUpdateManyWithoutAdminNestedInput
+  notificacaos?: Prisma.NotificacaoUncheckedUpdateManyWithoutAdminNestedInput
 }
 
 export type AdminCreateWithoutEnfermeirosInput = {
@@ -529,6 +554,7 @@ export type AdminCreateWithoutEnfermeirosInput = {
   pacientes?: Prisma.PacienteCreateNestedManyWithoutAdminInput
   medicamentos?: Prisma.MedicamentoCreateNestedManyWithoutAdminInput
   prescricoes?: Prisma.PrescricaoCreateNestedManyWithoutAdminInput
+  notificacaos?: Prisma.NotificacaoCreateNestedManyWithoutAdminInput
 }
 
 export type AdminUncheckedCreateWithoutEnfermeirosInput = {
@@ -542,6 +568,7 @@ export type AdminUncheckedCreateWithoutEnfermeirosInput = {
   pacientes?: Prisma.PacienteUncheckedCreateNestedManyWithoutAdminInput
   medicamentos?: Prisma.MedicamentoUncheckedCreateNestedManyWithoutAdminInput
   prescricoes?: Prisma.PrescricaoUncheckedCreateNestedManyWithoutAdminInput
+  notificacaos?: Prisma.NotificacaoUncheckedCreateNestedManyWithoutAdminInput
 }
 
 export type AdminCreateOrConnectWithoutEnfermeirosInput = {
@@ -571,6 +598,7 @@ export type AdminUpdateWithoutEnfermeirosInput = {
   pacientes?: Prisma.PacienteUpdateManyWithoutAdminNestedInput
   medicamentos?: Prisma.MedicamentoUpdateManyWithoutAdminNestedInput
   prescricoes?: Prisma.PrescricaoUpdateManyWithoutAdminNestedInput
+  notificacaos?: Prisma.NotificacaoUpdateManyWithoutAdminNestedInput
 }
 
 export type AdminUncheckedUpdateWithoutEnfermeirosInput = {
@@ -584,6 +612,7 @@ export type AdminUncheckedUpdateWithoutEnfermeirosInput = {
   pacientes?: Prisma.PacienteUncheckedUpdateManyWithoutAdminNestedInput
   medicamentos?: Prisma.MedicamentoUncheckedUpdateManyWithoutAdminNestedInput
   prescricoes?: Prisma.PrescricaoUncheckedUpdateManyWithoutAdminNestedInput
+  notificacaos?: Prisma.NotificacaoUncheckedUpdateManyWithoutAdminNestedInput
 }
 
 export type AdminCreateWithoutMedicamentosInput = {
@@ -597,6 +626,7 @@ export type AdminCreateWithoutMedicamentosInput = {
   pacientes?: Prisma.PacienteCreateNestedManyWithoutAdminInput
   enfermeiros?: Prisma.EnfermeiroCreateNestedManyWithoutAdminInput
   prescricoes?: Prisma.PrescricaoCreateNestedManyWithoutAdminInput
+  notificacaos?: Prisma.NotificacaoCreateNestedManyWithoutAdminInput
 }
 
 export type AdminUncheckedCreateWithoutMedicamentosInput = {
@@ -610,6 +640,7 @@ export type AdminUncheckedCreateWithoutMedicamentosInput = {
   pacientes?: Prisma.PacienteUncheckedCreateNestedManyWithoutAdminInput
   enfermeiros?: Prisma.EnfermeiroUncheckedCreateNestedManyWithoutAdminInput
   prescricoes?: Prisma.PrescricaoUncheckedCreateNestedManyWithoutAdminInput
+  notificacaos?: Prisma.NotificacaoUncheckedCreateNestedManyWithoutAdminInput
 }
 
 export type AdminCreateOrConnectWithoutMedicamentosInput = {
@@ -639,6 +670,7 @@ export type AdminUpdateWithoutMedicamentosInput = {
   pacientes?: Prisma.PacienteUpdateManyWithoutAdminNestedInput
   enfermeiros?: Prisma.EnfermeiroUpdateManyWithoutAdminNestedInput
   prescricoes?: Prisma.PrescricaoUpdateManyWithoutAdminNestedInput
+  notificacaos?: Prisma.NotificacaoUpdateManyWithoutAdminNestedInput
 }
 
 export type AdminUncheckedUpdateWithoutMedicamentosInput = {
@@ -652,6 +684,7 @@ export type AdminUncheckedUpdateWithoutMedicamentosInput = {
   pacientes?: Prisma.PacienteUncheckedUpdateManyWithoutAdminNestedInput
   enfermeiros?: Prisma.EnfermeiroUncheckedUpdateManyWithoutAdminNestedInput
   prescricoes?: Prisma.PrescricaoUncheckedUpdateManyWithoutAdminNestedInput
+  notificacaos?: Prisma.NotificacaoUncheckedUpdateManyWithoutAdminNestedInput
 }
 
 export type AdminCreateWithoutPrescricoesInput = {
@@ -665,6 +698,7 @@ export type AdminCreateWithoutPrescricoesInput = {
   pacientes?: Prisma.PacienteCreateNestedManyWithoutAdminInput
   enfermeiros?: Prisma.EnfermeiroCreateNestedManyWithoutAdminInput
   medicamentos?: Prisma.MedicamentoCreateNestedManyWithoutAdminInput
+  notificacaos?: Prisma.NotificacaoCreateNestedManyWithoutAdminInput
 }
 
 export type AdminUncheckedCreateWithoutPrescricoesInput = {
@@ -678,6 +712,7 @@ export type AdminUncheckedCreateWithoutPrescricoesInput = {
   pacientes?: Prisma.PacienteUncheckedCreateNestedManyWithoutAdminInput
   enfermeiros?: Prisma.EnfermeiroUncheckedCreateNestedManyWithoutAdminInput
   medicamentos?: Prisma.MedicamentoUncheckedCreateNestedManyWithoutAdminInput
+  notificacaos?: Prisma.NotificacaoUncheckedCreateNestedManyWithoutAdminInput
 }
 
 export type AdminCreateOrConnectWithoutPrescricoesInput = {
@@ -707,6 +742,7 @@ export type AdminUpdateWithoutPrescricoesInput = {
   pacientes?: Prisma.PacienteUpdateManyWithoutAdminNestedInput
   enfermeiros?: Prisma.EnfermeiroUpdateManyWithoutAdminNestedInput
   medicamentos?: Prisma.MedicamentoUpdateManyWithoutAdminNestedInput
+  notificacaos?: Prisma.NotificacaoUpdateManyWithoutAdminNestedInput
 }
 
 export type AdminUncheckedUpdateWithoutPrescricoesInput = {
@@ -720,6 +756,79 @@ export type AdminUncheckedUpdateWithoutPrescricoesInput = {
   pacientes?: Prisma.PacienteUncheckedUpdateManyWithoutAdminNestedInput
   enfermeiros?: Prisma.EnfermeiroUncheckedUpdateManyWithoutAdminNestedInput
   medicamentos?: Prisma.MedicamentoUncheckedUpdateManyWithoutAdminNestedInput
+  notificacaos?: Prisma.NotificacaoUncheckedUpdateManyWithoutAdminNestedInput
+}
+
+export type AdminCreateWithoutNotificacaosInput = {
+  id?: string
+  nome: string
+  email: string
+  senha: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  pacientes?: Prisma.PacienteCreateNestedManyWithoutAdminInput
+  enfermeiros?: Prisma.EnfermeiroCreateNestedManyWithoutAdminInput
+  medicamentos?: Prisma.MedicamentoCreateNestedManyWithoutAdminInput
+  prescricoes?: Prisma.PrescricaoCreateNestedManyWithoutAdminInput
+}
+
+export type AdminUncheckedCreateWithoutNotificacaosInput = {
+  id?: string
+  nome: string
+  email: string
+  senha: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  pacientes?: Prisma.PacienteUncheckedCreateNestedManyWithoutAdminInput
+  enfermeiros?: Prisma.EnfermeiroUncheckedCreateNestedManyWithoutAdminInput
+  medicamentos?: Prisma.MedicamentoUncheckedCreateNestedManyWithoutAdminInput
+  prescricoes?: Prisma.PrescricaoUncheckedCreateNestedManyWithoutAdminInput
+}
+
+export type AdminCreateOrConnectWithoutNotificacaosInput = {
+  where: Prisma.AdminWhereUniqueInput
+  create: Prisma.XOR<Prisma.AdminCreateWithoutNotificacaosInput, Prisma.AdminUncheckedCreateWithoutNotificacaosInput>
+}
+
+export type AdminUpsertWithoutNotificacaosInput = {
+  update: Prisma.XOR<Prisma.AdminUpdateWithoutNotificacaosInput, Prisma.AdminUncheckedUpdateWithoutNotificacaosInput>
+  create: Prisma.XOR<Prisma.AdminCreateWithoutNotificacaosInput, Prisma.AdminUncheckedCreateWithoutNotificacaosInput>
+  where?: Prisma.AdminWhereInput
+}
+
+export type AdminUpdateToOneWithWhereWithoutNotificacaosInput = {
+  where?: Prisma.AdminWhereInput
+  data: Prisma.XOR<Prisma.AdminUpdateWithoutNotificacaosInput, Prisma.AdminUncheckedUpdateWithoutNotificacaosInput>
+}
+
+export type AdminUpdateWithoutNotificacaosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  senha?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pacientes?: Prisma.PacienteUpdateManyWithoutAdminNestedInput
+  enfermeiros?: Prisma.EnfermeiroUpdateManyWithoutAdminNestedInput
+  medicamentos?: Prisma.MedicamentoUpdateManyWithoutAdminNestedInput
+  prescricoes?: Prisma.PrescricaoUpdateManyWithoutAdminNestedInput
+}
+
+export type AdminUncheckedUpdateWithoutNotificacaosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  senha?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pacientes?: Prisma.PacienteUncheckedUpdateManyWithoutAdminNestedInput
+  enfermeiros?: Prisma.EnfermeiroUncheckedUpdateManyWithoutAdminNestedInput
+  medicamentos?: Prisma.MedicamentoUncheckedUpdateManyWithoutAdminNestedInput
+  prescricoes?: Prisma.PrescricaoUncheckedUpdateManyWithoutAdminNestedInput
 }
 
 
@@ -732,6 +841,7 @@ export type AdminCountOutputType = {
   enfermeiros: number
   medicamentos: number
   prescricoes: number
+  notificacaos: number
 }
 
 export type AdminCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -739,6 +849,7 @@ export type AdminCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.
   enfermeiros?: boolean | AdminCountOutputTypeCountEnfermeirosArgs
   medicamentos?: boolean | AdminCountOutputTypeCountMedicamentosArgs
   prescricoes?: boolean | AdminCountOutputTypeCountPrescricoesArgs
+  notificacaos?: boolean | AdminCountOutputTypeCountNotificacaosArgs
 }
 
 /**
@@ -779,6 +890,13 @@ export type AdminCountOutputTypeCountPrescricoesArgs<ExtArgs extends runtime.Typ
   where?: Prisma.PrescricaoWhereInput
 }
 
+/**
+ * AdminCountOutputType without action
+ */
+export type AdminCountOutputTypeCountNotificacaosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NotificacaoWhereInput
+}
+
 
 export type AdminSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -792,6 +910,7 @@ export type AdminSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   enfermeiros?: boolean | Prisma.Admin$enfermeirosArgs<ExtArgs>
   medicamentos?: boolean | Prisma.Admin$medicamentosArgs<ExtArgs>
   prescricoes?: boolean | Prisma.Admin$prescricoesArgs<ExtArgs>
+  notificacaos?: boolean | Prisma.Admin$notificacaosArgs<ExtArgs>
   _count?: boolean | Prisma.AdminCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["admin"]>
 
@@ -831,6 +950,7 @@ export type AdminInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   enfermeiros?: boolean | Prisma.Admin$enfermeirosArgs<ExtArgs>
   medicamentos?: boolean | Prisma.Admin$medicamentosArgs<ExtArgs>
   prescricoes?: boolean | Prisma.Admin$prescricoesArgs<ExtArgs>
+  notificacaos?: boolean | Prisma.Admin$notificacaosArgs<ExtArgs>
   _count?: boolean | Prisma.AdminCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AdminIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -843,6 +963,7 @@ export type $AdminPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     enfermeiros: Prisma.$EnfermeiroPayload<ExtArgs>[]
     medicamentos: Prisma.$MedicamentoPayload<ExtArgs>[]
     prescricoes: Prisma.$PrescricaoPayload<ExtArgs>[]
+    notificacaos: Prisma.$NotificacaoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1250,6 +1371,7 @@ export interface Prisma__AdminClient<T, Null = never, ExtArgs extends runtime.Ty
   enfermeiros<T extends Prisma.Admin$enfermeirosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Admin$enfermeirosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EnfermeiroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   medicamentos<T extends Prisma.Admin$medicamentosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Admin$medicamentosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MedicamentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   prescricoes<T extends Prisma.Admin$prescricoesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Admin$prescricoesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PrescricaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notificacaos<T extends Prisma.Admin$notificacaosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Admin$notificacaosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificacaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1772,6 +1894,30 @@ export type Admin$prescricoesArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.PrescricaoScalarFieldEnum | Prisma.PrescricaoScalarFieldEnum[]
+}
+
+/**
+ * Admin.notificacaos
+ */
+export type Admin$notificacaosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Notificacao
+   */
+  select?: Prisma.NotificacaoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Notificacao
+   */
+  omit?: Prisma.NotificacaoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NotificacaoInclude<ExtArgs> | null
+  where?: Prisma.NotificacaoWhereInput
+  orderBy?: Prisma.NotificacaoOrderByWithRelationInput | Prisma.NotificacaoOrderByWithRelationInput[]
+  cursor?: Prisma.NotificacaoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NotificacaoScalarFieldEnum | Prisma.NotificacaoScalarFieldEnum[]
 }
 
 /**

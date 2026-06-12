@@ -389,6 +389,7 @@ export const ModelName = {
   Enfermeiro: 'Enfermeiro',
   Medicamento: 'Medicamento',
   Prescricao: 'Prescricao',
+  Notificacao: 'Notificacao',
   CatalogoMedicamento: 'CatalogoMedicamento'
 } as const
 
@@ -405,7 +406,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "paciente" | "enfermeiro" | "medicamento" | "prescricao" | "catalogoMedicamento"
+    modelProps: "admin" | "paciente" | "enfermeiro" | "medicamento" | "prescricao" | "notificacao" | "catalogoMedicamento"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -779,6 +780,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Notificacao: {
+      payload: Prisma.$NotificacaoPayload<ExtArgs>
+      fields: Prisma.NotificacaoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.NotificacaoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacaoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.NotificacaoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacaoPayload>
+        }
+        findFirst: {
+          args: Prisma.NotificacaoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacaoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.NotificacaoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacaoPayload>
+        }
+        findMany: {
+          args: Prisma.NotificacaoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacaoPayload>[]
+        }
+        create: {
+          args: Prisma.NotificacaoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacaoPayload>
+        }
+        createMany: {
+          args: Prisma.NotificacaoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.NotificacaoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacaoPayload>[]
+        }
+        delete: {
+          args: Prisma.NotificacaoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacaoPayload>
+        }
+        update: {
+          args: Prisma.NotificacaoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacaoPayload>
+        }
+        deleteMany: {
+          args: Prisma.NotificacaoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.NotificacaoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.NotificacaoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacaoPayload>[]
+        }
+        upsert: {
+          args: Prisma.NotificacaoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$NotificacaoPayload>
+        }
+        aggregate: {
+          args: Prisma.NotificacaoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNotificacao>
+        }
+        groupBy: {
+          args: Prisma.NotificacaoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificacaoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.NotificacaoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.NotificacaoCountAggregateOutputType> | number
+        }
+      }
+    }
     CatalogoMedicamento: {
       payload: Prisma.$CatalogoMedicamentoPayload<ExtArgs>
       fields: Prisma.CatalogoMedicamentoFieldRefs
@@ -969,6 +1044,19 @@ export const PrescricaoScalarFieldEnum = {
 } as const
 
 export type PrescricaoScalarFieldEnum = (typeof PrescricaoScalarFieldEnum)[keyof typeof PrescricaoScalarFieldEnum]
+
+
+export const NotificacaoScalarFieldEnum = {
+  id: 'id',
+  id_admin: 'id_admin',
+  titulo: 'titulo',
+  mensagem: 'mensagem',
+  lida: 'lida',
+  tipo: 'tipo',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificacaoScalarFieldEnum = (typeof NotificacaoScalarFieldEnum)[keyof typeof NotificacaoScalarFieldEnum]
 
 
 export const CatalogoMedicamentoScalarFieldEnum = {
@@ -1174,6 +1262,7 @@ export type GlobalOmitConfig = {
   enfermeiro?: Prisma.EnfermeiroOmit
   medicamento?: Prisma.MedicamentoOmit
   prescricao?: Prisma.PrescricaoOmit
+  notificacao?: Prisma.NotificacaoOmit
   catalogoMedicamento?: Prisma.CatalogoMedicamentoOmit
 }
 

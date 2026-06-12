@@ -28,6 +28,12 @@ export class PrescricoesController {
     return this.prescricoesService.totalData(admin.sub);
   }
 
+  @Get('atrasadas')
+  @HttpCode(HttpStatus.OK)
+  async findAtrasadas(@CurrentAdmin() admin: { sub: string }) {
+    return this.prescricoesService.findAtrasadas(admin.sub);
+  }
+
   @Get()
   @HttpCode(HttpStatus.OK) 
   async findAll(@CurrentAdmin() admin: { sub: string }) {

@@ -56,6 +56,7 @@ export const ModelName = {
   Enfermeiro: 'Enfermeiro',
   Medicamento: 'Medicamento',
   Prescricao: 'Prescricao',
+  Notificacao: 'Notificacao',
   CatalogoMedicamento: 'CatalogoMedicamento'
 } as const
 
@@ -152,6 +153,19 @@ export const PrescricaoScalarFieldEnum = {
 } as const
 
 export type PrescricaoScalarFieldEnum = (typeof PrescricaoScalarFieldEnum)[keyof typeof PrescricaoScalarFieldEnum]
+
+
+export const NotificacaoScalarFieldEnum = {
+  id: 'id',
+  id_admin: 'id_admin',
+  titulo: 'titulo',
+  mensagem: 'mensagem',
+  lida: 'lida',
+  tipo: 'tipo',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificacaoScalarFieldEnum = (typeof NotificacaoScalarFieldEnum)[keyof typeof NotificacaoScalarFieldEnum]
 
 
 export const CatalogoMedicamentoScalarFieldEnum = {

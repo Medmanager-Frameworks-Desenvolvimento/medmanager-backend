@@ -12,10 +12,16 @@ export class PrescricoesService {
     private readonly notificationsGateway: NotificationsGateway
   ) {}
 
+  private normalizarDataHoraParaUtc(dataHoraStr: string): Date {
+    if (dataHoraStr.endsWith('Z') || /([+-]\d{2}:\d{2})$/.test(dataHoraStr)) {
+      return new Date(dataHoraStr);
+    }
+    return new Date(`${dataHoraStr}-03:00`);
+  }
+
   @Cron(CronExpression.EVERY_MINUTE, {
       timeZone: 'America/Sao_Paulo',
   })
-
   async verificarEVerificarMedicacoesAtrasadas() {
     const agora = new Date();
 
@@ -54,10 +60,27 @@ export class PrescricoesService {
     }
   }
 
+  async findAtrasadas(idAdmin: string) {
+    return await this.prisma.prescricao.findMany({
+      where: {
+        id_admin: idAdmin,
+        deletedAt: null,
+        tomou_medicacao: false,    
+        notificado_atraso: true,   
+      },
+      include: {
+        paciente: { select: { nome: true } },
+        medicamento: { select: { nome: true } },
+      },
+      orderBy: {
+        data_hora: 'desc',
+      },
+    });
+  }
+
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT, {
       timeZone: 'America/Sao_Paulo',
   })
-
   async resetarStatusMedicacaoDiario() {
     try {
       await this.prisma.prescricao.updateMany({
@@ -115,12 +138,12 @@ export class PrescricoesService {
         quantidade: data.quantidade,
         unidade_medida: data.unidade_medida,
         turno: data.turno,
-        data_hora: new Date(data.data_hora),
+        data_hora: this.normalizarDataHoraParaUtc(data.data_hora), // <-- CORRIGIDO AQUI
       },
     });
   }
 
-async totalData(idAdmin: string) {
+  async totalData(idAdmin: string) {
     const [
       pacientes, 
       medicamentos, 
@@ -242,7 +265,9 @@ async totalData(idAdmin: string) {
       }
     }
 
-    const dataHoraConvertida = data.data_hora ? new Date(data.data_hora) : undefined;
+    const dataHoraConvertida = data.data_hora 
+      ? this.normalizarDataHoraParaUtc(data.data_hora) 
+      : undefined;
 
     return await this.prisma.prescricao.update({
       where: { 

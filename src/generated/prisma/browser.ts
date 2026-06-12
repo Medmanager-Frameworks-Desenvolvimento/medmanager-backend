@@ -43,6 +43,11 @@ export type Medicamento = Prisma.MedicamentoModel
  */
 export type Prescricao = Prisma.PrescricaoModel
 /**
+ * Model Notificacao
+ * 
+ */
+export type Notificacao = Prisma.NotificacaoModel
+/**
  * Model CatalogoMedicamento
  * 
  */
