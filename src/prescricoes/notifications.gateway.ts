@@ -1,5 +1,6 @@
 import { WebSocketGateway, WebSocketServer, OnGatewayConnection, OnGatewayDisconnect, SubscribeMessage } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
+import { Logger } from '@nestjs/common';
 
 @WebSocketGateway({
   cors: {
@@ -7,15 +8,17 @@ import { Server, Socket } from 'socket.io';
   },
 })
 export class NotificationsGateway implements OnGatewayConnection, OnGatewayDisconnect {
+  private readonly logger = new Logger(NotificationsGateway.name)
+
   @WebSocketServer()
   server: Server;
 
   handleConnection(client: Socket) {
-    console.log(`Cliente conectado ao WebSocket: ${client.id}`);
+    this.logger.log(`Conectado: ${client.id}`);
   }
 
   handleDisconnect(client: Socket) {
-    console.log(`Cliente desconectado: ${client.id}`);
+    this.logger.log(`Desconectado: ${client.id}`);
   }
 
   enviarAlertaAtraso(idAdmin: string, dadosNotificacao: any) {
@@ -25,6 +28,6 @@ export class NotificationsGateway implements OnGatewayConnection, OnGatewayDisco
   @SubscribeMessage('joinAdminRoom')
   handleJoinRoom(client: Socket, idAdmin: string) {
     client.join(`admin_${idAdmin}`);
-    console.log(`Cliente ${client.id} entrou na sala admin_${idAdmin}`);
+    this.logger.log(`${client.id} entrou na sala admin_${idAdmin}`);
   }
 }

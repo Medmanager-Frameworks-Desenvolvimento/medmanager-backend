@@ -38,14 +38,17 @@ export class PrescricoesService {
         include: {
           paciente: { select: { nome: true } },
           medicamento: { select: { nome: true } },
+          enfermeiro: { select: { nome: true } },
         },
       });
 
       for (const prescricao of prescricoesAtrasadas) {
         this.notificationsGateway.enviarAlertaAtraso(prescricao.id_admin, {
           idPrescricao: prescricao.id,
-          paciente: prescricao.paciente.nome,
+          pacienteNome: prescricao.paciente.nome,
           medicamento: prescricao.medicamento.nome,
+          dosagem: prescricao.dosagem,                 
+          enfermeiroNome: prescricao.enfermeiro.nome,
           horarioPlanejado: prescricao.data_hora,
           turno: prescricao.turno,
         });
