@@ -280,6 +280,7 @@ export class PrescricoesService {
       data: {
         ...data,
         data_hora: dataHoraConvertida,
+        ...(data.data_hora && { notificado_atraso: false })
       },
     });
   }
