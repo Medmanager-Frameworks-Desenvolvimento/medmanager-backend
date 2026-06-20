@@ -4,7 +4,7 @@ import { MedicamentosService } from './medicamentos.service';
 import { CreateMedicamentoDto } from './dto/create-medicamento.dto';
 import { UpdateMedicamentoDto } from './dto/update-medicamento.dto';
 import { CurrentAdmin } from 'src/common/decorators';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { AuthGuard } from 'src/modules/auth/auth.guard';
 
 @ApiTags('Medicamentos') 
 @ApiBearerAuth()

@@ -4,7 +4,7 @@ import { EnfermeirosService } from './enfermeiros.service';
 import { CreateEnfermeiroDto } from './dto/create-enfermeiro.dto';
 import { UpdateEnfermeiroDto } from './dto/update-enfermeiro.dto';
 import { CurrentAdmin } from 'src/common/decorators';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { AuthGuard } from 'src/modules/auth/auth.guard';
 
 @ApiTags('Enfermeiros') 
 @ApiBearerAuth()

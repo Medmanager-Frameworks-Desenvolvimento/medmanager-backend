@@ -4,7 +4,7 @@ import { PacientesService } from './pacientes.service';
 import { CreatePacienteDto } from './dto/create-paciente.dto';
 import { UpdatePacienteDto } from './dto/update-paciente.dto';
 import { CurrentAdmin } from 'src/common/decorators';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { AuthGuard } from 'src/modules/auth/auth.guard';
 
 @ApiTags('Pacientes') 
 @ApiBearerAuth()

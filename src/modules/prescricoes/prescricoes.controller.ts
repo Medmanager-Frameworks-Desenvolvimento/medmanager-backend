@@ -4,7 +4,7 @@ import { PrescricoesService } from './prescricoes.service';
 import { CreatePrescricaoDto } from './dto/create-prescricao.dto';
 import { UpdatePrescricaoDto } from './dto/update-prescricao.dto';
 import { CurrentAdmin } from 'src/common/decorators';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { AuthGuard } from 'src/modules/auth/auth.guard';
 
 @ApiTags('Prescrições') 
 @ApiBearerAuth()

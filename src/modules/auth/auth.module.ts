@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { AdminModule } from '../admin/admin.module';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthGuard } from './auth.guard';
-import { DatabaseModule } from '../database/database.module.js';
+import { DatabaseModule } from '../../database/database.module.js';
 
 @Module({
   imports: [
