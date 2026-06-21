@@ -99,6 +99,7 @@ npm run start:dev
 - Para utilizar a aplicação completa, acesse também o repositório do frontend:
 [MedManager Frontend](https://github.com/Medmanager-Frameworks-Desenvolvimento/medmanager-frontend)
 
+<br>
 
 ## 📁 Estrutura do Projeto
 
@@ -219,6 +220,9 @@ medmanager-backend
 │── tsconfig.build.json
 │── tsconfig.json
 ```
+
+<br>
+
 ## 👩🏻‍💻 Autoras
 
 #### [Elis Vieira Weiss](https://github.com/elisvw)
