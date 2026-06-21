@@ -1,4 +1,4 @@
-# MedManager - Backend
+# 🧓💊 MedManager - Backend
 
 O MedManager é um sistema desenvolvido para otimizar o gerenciamento de pacientes idosos, permitindo o controle de prescrições médicas, administração de medicamentos e acompanhamento por enfermeiros.
 
