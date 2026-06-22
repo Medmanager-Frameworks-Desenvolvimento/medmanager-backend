@@ -1,98 +1,229 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🧓💊 MedManager - Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+O MedManager é um sistema desenvolvido para otimizar o gerenciamento de pacientes idosos, permitindo o controle de prescrições médicas, administração de medicamentos e acompanhamento por enfermeiros.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Este repositório contém a API responsável por fornecer os recursos e regras de negócio da aplicação.
 
-## Description
+<br>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## ⚙️ Funcionalidades
 
-## Project setup
+- **Cadastro e autenticação de administradores**: permite o registro e acesso seguro ao sistema por meio de autenticação e controle de todos os dados.
 
+- **Gerenciamento de pacientes**: permite cadastrar, visualizar, atualizar e remover informações dos pacientes.
+
+- **Gerenciamento de medicamentos**: permite cadastrar, visualizar, atualizar e remover medicamentos do sistema.
+
+- **Consulta ao catálogo de medicamentos**: permite pesquisar medicamentos a partir do catálogo baseado nos dados da ANVISA, facilitando a busca por nomes comerciais válidos e padronizados.
+
+- **Gerenciamento de enfermeiros**: permite cadastrar, visualizar, atualizar e remover informações dos enfermeiros.
+
+- **Gerenciamento de prescrições**: permite cadastrar, visualizar, atualizar e remover prescrições médicas, associando pacientes e medicamentos.
+
+- **Alertas e notificações em tempo real**: envia alertas e notificações automáticas no momento programado para a medicação, auxiliando no cumprimento correto da prescrição.
+
+<br>
+
+## 💻 Tecnologias Utilizadas
+
+- **NestJS**: Framework progressivo para Node.js utilizado na construção da API, baseado em TypeScript e arquitetura modular.
+
+- **Node.js**: Ambiente de execução JavaScript utilizado para rodar a aplicação no backend.
+
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática ao código.
+
+- **Prisma ORM**: ORM utilizado para acesso e manipulação do banco de dados de forma tipada.
+
+- **PostgreSQL (via Prisma Adapter PG)**: Banco de dados relacional utilizado para persistência das informações do sistema.
+
+- **JWT (@nestjs/jwt)**: Tecnologia utilizada para autenticação baseada em tokens, garantindo segurança no acesso às rotas protegidas.
+
+- **bcrypt**: Biblioteca utilizada para criptografia de senhas, aumentando a segurança das credenciais dos usuários.
+
+- **WebSockets (@nestjs/websockets + Socket.IO)**: Tecnologia utilizada para comunicação em tempo real, especialmente para notificações do sistema.
+
+- **Axios**: Biblioteca utilizada para consumo de APIs externas e requisições HTTP.
+
+- **@nestjs/schedule**: Módulo utilizado para agendamento de tarefas automáticas (cron jobs), como verificações periódicas do sistema.
+
+- **Swagger (@nestjs/swagger)**: Ferramenta utilizada para documentação automática da API, facilitando testes e integração.
+
+- **class-validator**: Biblioteca utilizada para validação de dados nas requisições da API.
+
+- **class-transformer**: Biblioteca utilizada para transformação de objetos e controle de serialização de dados.
+
+- **csv-parser**: Biblioteca utilizada para leitura e processamento de arquivos CSV, aplicada no catálogo de medicamentos da ANVISA.
+
+- **RxJS**: Biblioteca reativa utilizada pelo NestJS para lidar com programação assíncrona baseada em streams.
+
+<br>
+
+## 🚀 Como testar localmente
+
+- Clone o repositório, utilizando o camando:
 ```bash
-$ npm install
+git clone https://github.com/Medmanager-Frameworks-Desenvolvimento/medmanager-backend.git
 ```
 
-## Compile and run the project
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+- Renomeie o arquivo `.env.example` para `.env` e adicione as credenciais necessárias:
+```
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA"
+SECRET_KEY=your_secret_key
 ```
 
-## Run tests
-
+- Instale as dependências do projeto:
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
+- Gere o Prisma Client:
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npx prisma generate
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+- Execute as migrations do Prisma (criação das tabelas no banco de dados):
+```bash
+npx prisma migrate dev
+```
 
-## Resources
+- Execute o seed do Prisma para popular o banco de dados com dados iniciais (medicamentos da ANVISA):
+```bash
+npx prisma db seed
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+- Inicie o servidor em modo desenvolvimento:
+```bash
+npm run start:dev
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+- Para utilizar a aplicação completa, acesse também o repositório do frontend:
+[MedManager Frontend](https://github.com/Medmanager-Frameworks-Desenvolvimento/medmanager-frontend)
 
-## Support
+<br>
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## 📁 Estrutura do Projeto
 
-## Stay in touch
+```
+medmanager-backend
+│
+│── prisma
+│ │── migrations/   # Histórico de migrações do banco de dados (Prisma)
+│ │── schema.prisma   # Schema principal do banco de dados
+│ │── seed.ts   # Script para popular o banco com dados iniciais (ex: medicamentos ANVISA)
+│
+│── src
+│ │── app.controller.spec.ts  # Testes do controller principal
+│ │── app.controller.ts   # Controller base da aplicação
+│ │── app.module.ts   # Módulo principal da aplicação
+│ │── app.service.ts  # Service base da aplicação
+│ │── main.ts   # Ponto de entrada da aplicação NestJS
+│
+│ │── common  # Recursos reutilizáveis globalmente
+│ │ │── decorators
+│ │ │ ├── current-admin.decorator.ts  # Extrai admin autenticado da requisição
+│ │ │ ├── index.ts
+│ │ │ ├── public.decorator.ts   # Marca rotas públicas (sem autenticação)
+│
+│ │── database  # Configuração e acesso ao banco de dados
+│ │ │── database.module.ts  # Módulo de conexão com o Prisma
+│ │ │── prisma.service.spec.ts  # Testes do Prisma Service
+│ │ │── prisma.service.ts   # Serviço principal do Prisma
+│
+│ │── generated
+│ │ │── prisma/   # Código gerado automaticamente pelo Prisma Client
+│
+│ │── modules   # Módulos principais da aplicação (arquitetura modular NestJS)
+│
+│ │ │── admin   # Módulo de administração do sistema
+│ │ │ │── admin.controller.spec.ts
+│ │ │ │── admin.controller.ts   # Rotas HTTP do admin
+│ │ │ │── admin.module.ts
+│ │ │ │── admin.service.spec.ts
+│ │ │ │── admin.service.ts  # Regras de negócio do admin
+│ │ │ │── dto
+│ │ │ │ ├── create-admin.dto.ts
+│ │ │ │ ├── update-admin.dto.ts
+│
+│ │ │── auth  # Autenticação e segurança (JWT)
+│ │ │ │── auth.controller.spec.ts
+│ │ │ │── auth.controller.ts
+│ │ │ │── auth.guard.ts   # Proteção de rotas com JWT Guard
+│ │ │ │── auth.module.ts
+│ │ │ │── auth.service.spec.ts
+│ │ │ │── auth.service.ts
+│ │ │ │── dto
+│ │ │ │ ├── sign-in.dto.ts
+│
+│ │ │── enfermeiros   # CRUD de enfermeiros
+│ │ │ │── dto
+│ │ │ │ ├── create-enfermeiro.dto.ts
+│ │ │ │ ├── update-enfermeiro.dto.ts
+│ │ │ │── entities
+│ │ │ │ ├── enfermeiro.entity.ts
+│ │ │ │── enfermeiros.controller.spec.ts
+│ │ │ │── enfermeiros.controller.ts
+│ │ │ │── enfermeiros.module.ts
+│ │ │ │── enfermeiros.service.spec.ts
+│ │ │ │── enfermeiros.service.ts
+│
+│ │ │── medicamentos  # CRUD + catálogo ANVISA
+│ │ │ │── dto
+│ │ │ │ ├── create-medicamento.dto.ts
+│ │ │ │ ├── update-medicamento.dto.ts
+│ │ │ │── entities
+│ │ │ │ ├── medicamento.entity.ts
+│ │ │ │── medicamentos.controller.spec.ts
+│ │ │ │── medicamentos.controller.ts
+│ │ │ │── medicamentos.module.ts
+│ │ │ │── medicamentos.service.spec.ts
+│ │ │ │── medicamentos.service.ts
+│
+│ │ │── pacientes   # CRUD de pacientes
+│ │ │ │── dto
+│ │ │ │ ├── create-paciente.dto.ts
+│ │ │ │ ├── update-paciente.dto.ts
+│ │ │ │── entities
+│ │ │ │ ├── paciente.entity.ts
+│ │ │ │── pacientes.controller.spec.ts
+│ │ │ │── pacientes.controller.ts
+│ │ │ │── pacientes.module.ts
+│ │ │ │── pacientes.service.spec.ts
+│ │ │ │── pacientes.service.ts
+│
+│ │ │── prescricoes   # Prescrições + notificações em tempo real
+│ │ │ │── dto
+│ │ │ │ ├── create-prescricao.dto.ts
+│ │ │ │ ├── update-prescricao.dto.ts
+│ │ │ │── entities
+│ │ │ │ ├── prescricoes.entity.ts
+│ │ │ │── notifications.gateway.ts  # WebSocket (alertas em tempo real)
+│ │ │ │── prescricoes.controller.spec.ts
+│ │ │ │── prescricoes.controller.ts
+│ │ │ │── prescricoes.module.ts
+│ │ │ │── prescricoes.service.spec.ts
+│ │ │ │── prescricoes.service.ts
+│
+│── test  # Testes end-to-end (E2E)
+│ │── app.e2e-spec.ts
+│ │── jest-e2e.json
+│
+│── .env.example
+│── .gitignore
+│── .prettierrc
+│── eslint.config.mjs
+│── medicamentos.csv  # Base ANVISA para catálogo de medicamentos
+│── nest-cli.json
+│── package-lock.json
+│── package.json
+│── prisma.config.ts
+│── README.md
+│── tsconfig.build.json
+│── tsconfig.json
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+<br>
 
-## License
+## 👩🏻‍💻 Autoras
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+#### [Elis Vieira Weiss](https://github.com/elisvw)
+#### [Sarah Alves Borges](https://github.com/sarahzxwy)

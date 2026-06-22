@@ -12,3 +12,126 @@ generator client {
   output          = "../src/generated/prisma"
   moduleFormat  = "cjs"
 }
+
+model Admin {
+  id           String       @id @default(uuid())
+  nome         String
+  email        String       @unique
+  senha        String
+  createdAt    DateTime     @default(now()) @db.Timestamptz(3)
+  updatedAt    DateTime     @updatedAt @db.Timestamptz(3)
+  deletedAt    DateTime?
+
+  pacientes    Paciente[]
+  enfermeiros  Enfermeiro[]
+  medicamentos Medicamento[]
+  prescricoes  Prescricao[]
+  notificacaos Notificacao[]
+
+  @@map("admin") 
+}
+
+model Paciente {
+  id             Int          @id @default(autoincrement())
+  id_admin       String      
+  nome           String       
+  cpf            String       
+  idade          Int
+  doenca_cronica String[]      
+  createdAt      DateTime     @default(now()) @db.Timestamptz(3)
+  updatedAt      DateTime     @updatedAt @db.Timestamptz(3)
+  deletedAt      DateTime?
+  
+  admin          Admin        @relation(fields: [id_admin], references: [id])
+  prescricoes    Prescricao[]
+
+  @@unique([cpf, id_admin])
+
+  @@map("pacientes")
+}
+
+model Enfermeiro {
+  id            Int          @id @default(autoincrement())
+  id_admin      String       
+  nome          String       
+  cpf           String       
+  email         String       
+  telefone      String       
+  createdAt     DateTime     @default(now()) @db.Timestamptz(3)
+  updatedAt     DateTime     @updatedAt @db.Timestamptz(3)
+  deletedAt     DateTime?
+  
+  admin         Admin        @relation(fields: [id_admin], references: [id])
+  prescricoes   Prescricao[]
+
+  @@unique([cpf, id_admin])
+  @@unique([email, id_admin])
+  
+  @@map("enfermeiros")
+}
+
+model Medicamento {
+  id            Int          @id @default(autoincrement())
+  id_admin      String       
+  nome          String       
+  descricao     String       
+  quantidade    Int
+  validade      DateTime     @db.Date
+  createdAt     DateTime     @default(now()) @db.Timestamptz(3)
+  updatedAt     DateTime     @updatedAt @db.Timestamptz(3)
+  deletedAt     DateTime? 
+  
+  admin         Admin        @relation(fields: [id_admin], references: [id])
+  prescricoes   Prescricao[]
+
+  @@map("medicamentos")
+}
+
+model Prescricao {
+  id                Int         @id @default(autoincrement())
+  id_admin          String       
+  id_paciente       Int
+  id_enfermeiro     Int
+  id_medicamento    Int
+  dosagem           String       
+  quantidade        Float        
+  unidade_medida    String      
+  turno             String       
+  data_hora         DateTime    @db.Timestamptz(3) 
+  tomou_medicacao   Boolean     @default(false) 
+  notificado_atraso Boolean     @default(false)
+  createdAt         DateTime    @default(now()) @db.Timestamptz(3)
+  updatedAt         DateTime    @updatedAt @db.Timestamptz(3)
+  deletedAt         DateTime?
+
+  admin          Admin        @relation(fields: [id_admin], references: [id])
+  paciente       Paciente     @relation(fields: [id_paciente], references: [id])
+  enfermeiro     Enfermeiro   @relation(fields: [id_enfermeiro], references: [id])
+  medicamento    Medicamento  @relation(fields: [id_medicamento], references: [id])
+
+  @@map("prescricoes")
+}
+
+model Notificacao {
+  id          Int      @id @default(autoincrement())
+  id_admin    String
+  titulo      String
+  mensagem    String
+  lida        Boolean  @default(false)
+  tipo        String  
+  createdAt   DateTime @default(now()) @db.Timestamptz(3)
+
+  admin       Admin    @relation(fields: [id_admin], references: [id])
+  
+  @@map("notificacoes")
+}
+
+model CatalogoMedicamento {
+  id               Int      @id @default(autoincrement())
+  nome_comercial   String   
+  principio_ativo  String   
+  fabricante       String?  
+  registro_anvisa  String?  @unique 
+
+  @@map("catalogo_medicamentos")
+}
